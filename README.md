@@ -2,7 +2,7 @@
 
 ## Name
 
-Challenge06-GIT-README
+Project01-README
 
 ## Add your files
 

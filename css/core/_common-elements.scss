@@ -43,3 +43,16 @@ ul {
   line-height: 2;
   list-style-type: none;
 }
+
+a{
+  text-decoration: none;
+}
+
+.button{
+  background-color: var.$button-color-base;
+  color: var.$text-color-base;
+  padding: 10px;
+  border-radius: 6px;
+  display: block;
+  text-align: center;
+}

@@ -2,4 +2,50 @@
 @use "../abstracts/variables" as var;
 @use "sass:math";
 
+header {
+  box-shadow: 0px -8px 25px #0000004d;
+}
+.contain {
+  @extend %wrap;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
+  .logo {
+    img {
+      width: 55px;
+      margin-right: auto;
+      margin-left: auto;
+    }
+    span {
+      font-weight: var.$font-weight-bold;
+      font-size: var.$font-size-small;
+    }
+  }
+  .navbar {
+    ul {
+      display: flex;
+      justify-content: space-between;
+      font-weight: var.$font-weight-bold;
+      li {
+        padding: 10px 20px;
+        a {
+          color: var.$text-color-primary;
+        }
+      }
+    }
+    @include mix.laptop-s-styles {
+      font-size: var.$font-size-small;
+    }
+    @include mix.tablet-styles {
+      display: none;
+    }
+  }
+  .navbar-button {
+    @include mix.tablet-styles {
+        display: none;
+      }
+  }
+}

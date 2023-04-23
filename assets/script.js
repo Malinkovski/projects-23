@@ -7,3 +7,5 @@ button.addEventListener("click", () => {
   navbar.classList.toggle("active");
 });
 
+//filters
+

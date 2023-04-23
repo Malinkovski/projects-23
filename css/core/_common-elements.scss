@@ -44,15 +44,19 @@ ul {
   list-style-type: none;
 }
 
-a{
+a {
   text-decoration: none;
 }
 
-.button{
+.button {
   background-color: var.$button-color-base;
   color: var.$text-color-base;
   padding: 10px;
   border-radius: 6px;
   display: block;
   text-align: center;
+}
+.button:hover {
+  filter: brightness(80%);
+  transition: 0.2s ease-in-out;
 }

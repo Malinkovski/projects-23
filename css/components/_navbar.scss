@@ -29,6 +29,7 @@ header {
   }
   .navbar {
     display: flex;
+    z-index: 7;
     ul {
       display: flex;
       justify-content: space-between;
@@ -75,6 +76,7 @@ header {
 
       &.active {
         top: 0;
+        z-index: 9;
       }
     }
   }
@@ -87,7 +89,7 @@ header {
   .navbar-toggle-button {
     cursor: pointer;
     display: none;
-    z-index: 1;
+    z-index: 10;
     transform: scaleX(-1);
     div {
       border-radius: 15px;

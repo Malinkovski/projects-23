@@ -216,6 +216,46 @@ header {
   }
 }
 
+.hire form label {
+  font-weight: 600;
+}
+.hire form ::placeholder {
+  font-style: italic;
+  font-size: 0.75rem;
+}
+.hire form input[type=number]::-webkit-inner-spin-button,
+.hire form input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.hire form .form-control {
+  padding: 25px;
+}
+.hire form .button {
+  padding: 18px;
+}
+.hire form select {
+  padding: 15px;
+}
+.hire form .form-c {
+  width: 100%;
+  height: 52px;
+  border: 2px rgb(92, 92, 92);
+}
+.hire form .form-c:focus-visible {
+  outline: none;
+}
+.hire form .form-c:active {
+  border: rgba(110, 110, 168, 0.637);
+  outline: none;
+}
+
+.container-75 {
+  width: 75%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .banner2 {
   display: flex;
   align-items: center;
@@ -236,6 +276,7 @@ header {
 .banner2 h1 {
   color: #302f38;
   font-size: 3.125rem;
+  font-weight: 600;
 }
 @media (max-width: 375px) {
   .banner2 h1 {

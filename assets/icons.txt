@@ -1,3 +1,5 @@
 icons:
 <i class="fa-solid fa-check"></i>           //standard check
 <i class="fa-solid fa-circle-check"></i>    //circle transparent check
+<i class="fa-solid fa-xmark"></i>           //x-mark
+<i class="fa-solid fa-bars"></i>            //sort bars

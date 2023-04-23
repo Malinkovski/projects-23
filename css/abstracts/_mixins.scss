@@ -70,7 +70,7 @@
   margin-right: auto;
 
   @include tablet-styles {
-    width: 100%;
+    width: 95%;
     padding-left: math.div(var.$gutter-base, 2);
     padding-right: math.div(var.$gutter-base, 2);
   }

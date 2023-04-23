@@ -216,4 +216,9 @@ header {
   }
 }
 
+.cards .filters p {
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
 /*# sourceMappingURL=main.css.map */

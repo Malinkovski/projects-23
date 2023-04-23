@@ -19,9 +19,14 @@
     @content;
   }
 }
+@mixin laptop-s-styles {
+  @media (max-width: 900px) {
+    @content;
+  }
+}
 
 @mixin tablet-styles {
-  @media (max-width: 768px) {
+  @media (max-width: 780px) {
     @content;
   }
 }
@@ -60,12 +65,12 @@
 }
 
 %wrap {
-  width: 80%;
+  width: 90%;
   margin-left: auto;
   margin-right: auto;
 
   @include tablet-styles {
-    width: 100%;
+    width: 95%;
     padding-left: math.div(var.$gutter-base, 2);
     padding-right: math.div(var.$gutter-base, 2);
   }

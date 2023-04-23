@@ -1,3 +1,15 @@
 @use "../abstracts/mixins" as mix;
 @use "../abstracts/variables" as var;
 @use "sass:math";
+
+.footer{
+    margin-top: 160px;
+    font-weight: var.$font-weight-bold;
+    color: var.$text-color-base;
+    background-color: var.$background-color-tertiary;
+    text-align: center;
+    padding: 16px 0;
+    @include mix.mobile-l-styles{
+        font-size: 10px;
+    }
+}

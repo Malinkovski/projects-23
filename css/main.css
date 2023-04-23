@@ -351,6 +351,7 @@ header {
 }
 .cards-section .cards .card .card-inner .card-content .button {
   margin-top: 15px;
+  margin-left: 30%;
 }
 .cards-section .cards .card .card-inner .card-content .button a {
   color: #FFFFFF;

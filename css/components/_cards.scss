@@ -13,10 +13,10 @@
   }
   .inputGroup {
     width: 100%;
-    &:hover{
-        filter: brightness(80%);
-        transition: 0.2s ease-in-out;
-      }
+    &:hover {
+      filter: brightness(80%);
+      transition: 0.2s ease-in-out;
+    }
     &:nth-child(1),
     &:nth-child(2) {
       border-right: 1px solid #464646;
@@ -70,19 +70,18 @@
     display: flex;
     flex-wrap: wrap;
     .card {
-        width: 33.333%;
-        @include mix.tablet-styles{
-            width: 50%;
-        }
-        @include mix.mobile-l-styles{
-            width: 100%;
-        }
-        position: relative;
-        transition: transform 0.3s ease;
-        &:hover {
-            transform: translateY(-10px);
-            
-          }
+      width: 33.333%;
+      @include mix.tablet-styles {
+        width: 50%;
+      }
+      @include mix.mobile-l-styles {
+        width: 100%;
+      }
+      position: relative;
+      transition: transform 0.3s ease;
+      &:hover {
+        transform: translateY(-10px);
+      }
       .card-inner {
         margin: 8px;
         background-color: var.$background-color-base;
@@ -90,28 +89,31 @@
         overflow: hidden;
         box-shadow: 0px -8px 25px #0000004d;
         .card-content {
-            h3{
-                color: var.$text-color-secondary;
-                padding: 15px 0;
+          h3 {
+            color: var.$text-color-secondary;
+            padding: 15px 0;
+          }
+          padding: 15px 12px;
+          .sticker {
+            display: inline-block;
+            padding: 4px 6px;
+            background-color: var.$background-color-primary;
+          }
+          .date {
+            font-size: var.$font-size-small;
+            font-weight: var.$font-weight-bold;
+          }
+          .button {
+            margin-top: 15px;
+            margin-left: 30%;
+            a {
+              color: var.$text-color-base;
             }
-            padding: 15px 12px;
-            .sticker{
-                display: inline-block;
-                padding: 4px 6px;
-                background-color: var.$background-color-primary;
-            }
-            .date{
-                font-size: var.$font-size-small;
-                font-weight: var.$font-weight-bold;
-            }
-            .button {
-                margin-top: 15px;
-                a{
-                    color: var.$text-color-base;
-                }
-            }
+          }
         }
       }
     }
+    
   }
+
 }

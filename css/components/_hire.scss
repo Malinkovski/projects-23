@@ -1,3 +1,57 @@
 @use "../abstracts/mixins" as mix;
 @use "../abstracts/variables" as var;
 @use "sass:math";
+
+.hire {
+    form {
+      label {
+        font-weight: var.$font-weight-bold;
+      }
+
+      ::placeholder {
+        font-style: italic;
+        font-size: var.$font-size-small;
+      }
+  
+      input[type=number]::-webkit-inner-spin-button,
+      input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+        
+      .form-control {
+        padding: 25px;
+      }
+      .button {
+        padding: 18px;
+      }
+      select{
+          padding: 15px;
+      }
+      .form-c {
+        width: 100%;
+        height: 52px;
+        border: 2px rgb(92, 92, 92);
+        &:focus-visible {
+          outline: none;
+        }
+      }
+      .form-c:active {
+        border: rgba(110, 110, 168, 0.637);
+        outline: none;
+      }
+    }
+  }
+  
+  .container-75 {
+    width: 75%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .footer-hire{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }

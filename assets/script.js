@@ -42,3 +42,11 @@ function hideCards() {
     cardsArray[i].style.display = "none";
   }
 }
+
+/* const loader = document.querySelector(".load");
+
+loader.addEventListener("click", () => {
+    let cardsCounter = document.querySelectorAll(".card"); 
+  }); */
+
+

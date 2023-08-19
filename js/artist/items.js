@@ -280,12 +280,13 @@ imageInput.addEventListener('change', (event) => {
   const selectedImage = event.target.files[0];
 
   if (selectedImage) {
-
     const reader = new FileReader();
     reader.onload = (e) => {
       capturedImageImg.src = e.target.result;
+
+      const imageContainer = document.querySelector('.take-picture');
+      imageContainer.style.backgroundImage = `url(${e.target.result})`;
     };
     reader.readAsDataURL(selectedImage);
-
   }
 });

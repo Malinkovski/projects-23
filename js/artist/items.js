@@ -276,19 +276,16 @@ captureImageBtn.addEventListener('click', () => {
   imageInput.click();
 });
 
-// Add event listener to the image input element
 imageInput.addEventListener('change', (event) => {
   const selectedImage = event.target.files[0];
 
   if (selectedImage) {
-    // Display the selected image as a preview
+
     const reader = new FileReader();
     reader.onload = (e) => {
       capturedImageImg.src = e.target.result;
     };
     reader.readAsDataURL(selectedImage);
 
-    // TODO: Store the selected image data within your application's logic
-    // and associate it with the relevant item.
   }
 });

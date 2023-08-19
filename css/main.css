@@ -1169,8 +1169,7 @@ textarea:hover {
   margin-top: 50px;
   transition: 0.2s ease-in;
   position: fixed;
-  padding: 10px;
-  padding-top: 50px;
+  padding: 50px 10px;
   height: 96vh;
   background-color: #A16A5E;
   color: #FCEBD5;
@@ -1306,13 +1305,13 @@ input[type=checkbox]:checked + .checkmark:after {
   z-index: 8;
   margin-top: 50px;
   width: 100%;
-  height: 96vh;
+  height: 100vh;
   top: 0;
   padding: 10px;
+  padding-bottom: 50px;
   background-color: #a16a5e;
   position: fixed;
   transition: 0.2s ease;
-  border-radius: 40px;
 }
 #take-snapshot-window .camera-box {
   height: 70vh;

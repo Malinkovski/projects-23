@@ -6,6 +6,9 @@ const closeItemBtn = document.querySelector(".submit-buttons .cancel-btn");
 const snapshotBtn = document.querySelector(".snapshot-button");
 const takepictureBtn = document.querySelector(".take-picture");
 const addItemForm = document.querySelector("#filter-form");
+const captureImageBtn = document.getElementById('captureImageBtn');
+const imageInput = document.getElementById('imageInput');
+const capturedImageImg = document.getElementById('capturedImage');
 
 addItemForm.addEventListener("submit", handleFormSubmit);
 addNewItemBtn.addEventListener("click", () => {
@@ -18,6 +21,21 @@ snapshotBtn.addEventListener("click", () => closeWindow(snapshotSection));
 
 let artistItems = [...items];
 let currentAuctionItemId = null;
+let capturedImageData = null;
+
+imageInput.addEventListener('change', (event) => {
+  const selectedImage = event.target.files[0];
+
+  if (selectedImage) {
+    // Display the selected image as a preview
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      capturedImageImg.src = e.target.result;
+      capturedImageData = e.target.result; // Store the captured image data
+    };
+    reader.readAsDataURL(selectedImage);
+  }
+});
 
 // save artistItems array to local storage
 function saveToLocalStorage() {
@@ -97,10 +115,10 @@ function handleFormSubmit(event) {
     title: formData.get("add-title"),
     description: formData.get("add-description"),
     type: formData.get("add-type"),
-    image: formData.get("add-image-url"),
+    image: capturedImageData || formData.get("add-image-url"),
     price: parseFloat(formData.get("add-price")),
     artist: localStorage.getItem("selectedArtistName"),
-    dateCreated: new Date().toLocaleDateString(), //dd/mm/yyyy
+    dateCreated: new Date().toISOString(), //dd/mm/yyyy
     isPublished: isPublishedCheckbox,
     isAuctioning: false,
     dateSold: null,
@@ -120,6 +138,7 @@ function handleFormSubmit(event) {
     // if adding a new item to the array
     artistItems.push(newItem);
   }
+  capturedImageData = null;
   saveToLocalStorage();
   addItemForm.reset();
   closeWindow(itemsSection);
@@ -191,6 +210,13 @@ function publishUnpublishBtn() {
     });
 }
 
+function togglePublishStatus(itemId) {
+  const item = artistItems.find((item) => item.id === itemId);
+  item.isPublished = !item.isPublished; // Change publish status
+  saveToLocalStorage();
+  renderItems(); // Update the items list with the latest status
+}
+
 //!________________________________________
 // toggle the publish status for an item
 function toggleAuctionStatus(itemId) {
@@ -243,16 +269,10 @@ function toggleAuctionStatus(itemId) {
   renderItems(); // Update the items list with the latest status
 }
 
-/* SNAPSHOT METHOD */
 //_____________________________________________________________
+/* SNAPSHOT METHOD */
 
-const captureImageBtn = document.getElementById('captureImageBtn');
-const imageInput = document.getElementById('imageInput');
-const capturedImageImg = document.getElementById('capturedImage');
-
-// Add event listener to the "Capture Image" button
 captureImageBtn.addEventListener('click', () => {
-  // Trigger the hidden image input to open the device camera
   imageInput.click();
 });
 

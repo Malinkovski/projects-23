@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ARTists</title>
+    <!-- Favicon -->
+    <link rel="icon" href="img/logo.png" type="image/png">
+    <!-- Link to Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Link to Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Link to CSS -->
+    <link rel="stylesheet" href="./css/main.css" />
+    <!-- Chart.js library -->
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+  </head>
+  <body>
+    <div class="header-offset">
+      <!-- !65px -->
+    </div>
+    <!-- *LOADING PAGE -->
+    <section class="page-section" id="loading">
+      <h2>Loading</h2>
+      <i class="fas fa-spinner fa-pulse"></i>
+    </section>
+    <!-- *LANDING PAGE -->
+    <section class="page-section" id="landing-page">
+      <div class="header shadow-box">
+        <h2 class="header-text">Street ARTists</h2>
+      </div>
+      <div class="content">
+        <div class="logo-content">
+          <div class="logo"></div>
+        </div>
+        <div id="join-as">
+          <div id="artist-link">
+            <div class="artist">
+              <h2>Join as Artist</h2>
+              <div class="dropdown-section">
+                <div class="button">
+                  Choose <i class="fas fa-caret-down"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a href="#visitor-page">
+            <div class="visitor">
+              <h2>Join as Visitor</h2>
+            </div>
+          </a>
+          <div id="select-artist">
+            <ul class="user-list">
+              <!-- ARTISTS -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- *VISITOR HOME PAGE -->
+    <section class="page-section" id="visitor-page">
+      <div class="header shadow-box">
+        <div class="logo-image">
+          <div class="logo-background shadow-box"></div>
+          <a href="#landing-page"><img src="./img/Logo.png" alt="Logo" /></a>
+        </div>
+        <div class="place-holder"></div>
+        <h2 class="header-text">Street ARTists</h2>
+        <div class="icon visitor-bid">
+          <a href="#auction" aria-label="Go to Auction Page"
+            ><i class="fa-solid fa-gavel fa-rotate-270"></i>
+          </a>
+        </div>
+      </div>
+      <div id="sub-header">
+        <div>
+          <h1>Looking for masterpiece?</h1>
+        </div>
+        <div>
+          <a href="#listing-page"><div class="button">Find one now!</div></a>
+        </div>
+      </div>
+      <div id="sliding-images-section">
+        <!-- first row -->
+        <div id="first-image-rows" class="image-rows">
+          <div id="first-row" class="row slide-to-right">
+            <img
+              class="image"
+              src="./img/art/pexels-photo-10.jpg"
+              alt="Art-1"
+            />
+            <img
+              class="image"
+              src="./img/art/pexels-photo-11.jpg"
+              alt="Art-2"
+            />
+            <img
+              class="image"
+              src="./img/art/pexels-photo-12.jpg"
+              alt="Art-3"
+            />
+            <img
+              class="image"
+              src="./img/art/pexels-photo-10.jpg"
+              alt="Art-1"
+            />
+            <img
+              class="image"
+              src="./img/art/pexels-photo-11.jpg"
+              alt="Art-2"
+            />
+            <img
+              class="image"
+              src="./img/art/pexels-photo-12.jpg"
+              alt="Art-3"
+            />
+          </div>
+          <!-- second row -->
+        </div>
+        <div id="second-image-rows" class="image-rows">
+          <div id="second-row" class="row slide-to-left">
+            <img
+              class="image"
+              src="./img/art/pexels-photo-13.jpg"
+              alt="Art-1"
+            />
+            <img
+              class="image"
+              src="./img/art/pexels-photo-14.jpg"
+              alt="Art-2"
+            />
+            <img
+              class="image"
+              src="./img/art/pexels-photo-15.jpg"
+              alt="Art-3"
+            />
+            <img
+              class="image"
+              src="./img/art/pexels-photo-13.jpg"
+              alt="Art-1"
+            />
+            <img
+              class="image"
+              src="./img/art/pexels-photo-14.jpg"
+              alt="Art-2"
+            />
+            <img
+              class="image"
+              src="./img/art/pexels-photo-15.jpg"
+              alt="Art-3"
+            />
+          </div>
+        </div>
+      </div>
+      <!-- Carousel -->
+      <div id="carousel-section">
+        <button
+          title="button"
+          type="button"
+          class="carousel-button"
+          id="prevButton"
+        >
+          <i class="fa-solid fa-chevron-left fa-lg"></i>
+        </button>
+        <button
+          title="button"
+          type="button"
+          class="carousel-button"
+          id="nextButton"
+        >
+          <i class="fa-solid fa-chevron-right fa-lg"></i>
+        </button>
+        <ul class="carousel-track">
+          <!-- dinamically added items to carousel -->
+        </ul>
+        <!-- Nav Buttons -->
+        <div class="carousel-nav">
+          <!-- dinamically added nav buttons. per item -->
+        </div>
+      </div>
+    </section>
+
+    <!-- *VISITOR LISTING PAGE -->
+    <section class="page-section" id="listing-page">
+      <div class="header shadow-box">
+        <div class="logo-image">
+          <div class="logo-background shadow-box"></div>
+          <a href="#landing-page"><img src="./img/Logo.png" alt="Logo" /></a>
+        </div>
+        <div class="place-holder"></div>
+        <h2 class="header-text">Street ARTists</h2>
+        <div class="icon visitor-bid">
+          <a href="#auction"
+            >&#8203;<i class="fa-solid fa-gavel fa-rotate-270"></i>
+          </a>
+        </div>
+      </div>
+
+      <ul id="all-listing-item-container">
+        <!--         <li class="listing-item-container">
+          <div class="listing-image-container">
+            <img src="./img/art/pexels-photo-10.jpg" alt="painting" />
+          </div>
+          <div class="listing-content">
+            <div class="badge price">$500</div>
+            <h2>Artist Name</h2>
+            <h4>item title</h4>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+              Perferendis voluptatibus est quasi, expedita a reiciendis harum
+              nam consequuntur, corporis et, quod quae?
+            </p>
+          </div>
+        </li> -->
+      </ul>
+      <!-- Filter button -->
+      <div class="filter-button active-filter">
+        <div class="vertical-line">
+          <div class="horizontal-line"></div>
+        </div>
+        <div class="vertical-line">
+          <div class="horizontal-line"></div>
+        </div>
+        <div class="vertical-line">
+          <div class="horizontal-line"></div>
+        </div>
+      </div>
+      <!-- Filter window -->
+      <div id="filtering-section" class="slide-down">
+        <h1>Filter by</h1>
+        <div class="close-button">
+          <div class="x-line x1"></div>
+          <div class="x-line x2"></div>
+        </div>
+        <div class="filter-container">
+          <!-- by name -->
+          <div class="by-name">
+            <label for="title-select">
+              <h3>By Item Title</h3>
+            </label>
+            <input
+              class="button"
+              type="text"
+              id="title-select"
+              name="title-select"
+              placeholder="Label"
+            />
+          </div>
+          <!-- by artist -->
+          <div>
+            <label for="artist-select">
+              <h3>By Artist</h3>
+            </label>
+            <select class="form-select button" id="artist-select">
+              <option value="">
+                Choose &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#8681;
+              </option>
+            </select>
+          </div>
+          <!-- by price -->
+          <div class="by-price">
+            <h3>By Price</h3>
+            <div class="prices">
+              <div class="min-price">
+                <label for="min-price">
+                  <h3>Min:</h3>
+                </label>
+                <input
+                  class="button"
+                  type="number"
+                  id="min-price"
+                  name="min-price"
+                  inputmode="numeric"
+                  placeholder="Label"
+                />
+              </div>
+              <div class="max-price">
+                <label for="max-price">
+                  <h3>Max:</h3>
+                </label>
+                <input
+                  class="button"
+                  type="number"
+                  id="max-price"
+                  name="maxPrice"
+                  inputmode="numeric"
+                  placeholder="Label"
+                />$
+              </div>
+            </div>
+          </div>
+          <!-- by type -->
+          <div class="by-type">
+            <div>
+              <label for="type-select"><h3>By Type</h3></label>
+              <select class="form-select button" id="type-select">
+                <option value="">
+                  Choose&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#8681;
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- *ARTIST HOME PAGE -->
+    <section class="page-section artist-home" id="artist/home">
+      <div class="header shadow-box">
+        <div class="logo-image">
+          <div class="logo-background shadow-box"></div>
+          <a href="#landing-page"><img src="./img/Logo.png" alt="Logo" /></a>
+        </div>
+        <div class="place-holder"></div>
+        <h2 class="header-text artist-name"></h2>
+        <div class="icon burger-nav-button">
+          <i class="fa-solid fa-bars fa-rotate-180"></i>
+        </div>
+      </div>
+      <!-- Nav dropdown -->
+      <div class="artist-dropdown slide-down">
+        <ul>
+          <li>
+            <span class="nav-option" href="#home">Home</span>
+          </li>
+          <li>
+            <span class="nav-option" href="#items">Items</span>
+          </li>
+          <li class="artist-bid">
+            <span class="nav-option" href="#auction">Auction</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- HOME content -->
+      <section class="sub-section" id="home">
+        <div class="earnings-section">
+          <div class="w50">
+            <div class="earnings-content">
+              <h3>Total Items Sold</h3>
+              <div class="total-items-sold">
+                <span>0/0</span>
+              </div>
+            </div>
+          </div>
+          <div class="w50">
+            <div class="earnings-content">
+              <h3>Total Income &#8205;</h3>
+              <div class="total-income">$0</div>
+            </div>
+          </div>
+          <div class="w100 artist-bid">
+            <div class="earnings-content bg-contrast" id="live-auction-widget">
+              <a href="#auction"><h3>Live Auction Items</h3></a>
+              <div class="total-items-sold">$0</div>
+              <h4>current bid</h4>
+            </div>
+          </div>
+        </div>
+        <div class="chart-section">
+          <h3>Display my income for last</h3>
+          <div class="income-days">
+            <div class="button" id="b-7-days">7 days</div>
+            <div class="button active" id="b-14-days">14 days</div>
+            <div class="button" id="b-30-days">30 days</div>
+            <div class="button" id="b-365-days">Yearly</div>
+          </div>
+          <div class="income-chart">
+            <!-- style="position: relative; height:auto; width:93vw" -->
+            <div class="chartBox">
+              <canvas id="myChart">
+                <!--! chart -->
+              </canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ITEM content -->
+      <section class="sub-section" id="items">
+        <!-- CARDS -->
+        <div class="cards-section">
+          <ul id="cards-list">
+            <!--             <li class="listing-item-container">
+              <div class="listing-image-container">
+                <img src="./img/art/pexels-photo-10.jpg" alt="painting" />
+              </div>
+              <div class="listing-content">
+                <div class="badge price item-price">$500</div>
+                <h4 class="title">item title</h4>
+                <p class="date">dd/mm/yyyy</p>
+                <p class="description">
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Perferendis voluptatibus est quasi, expedita a reiciendis
+                  harum nam consequuntur, corporis et, quod quae?
+                </p>
+              </div>
+              <div class="item-buttons">
+                <div class="send-btn button">Send to Auction</div>
+                <div class="unpublish-btn button">Unpublish</div>
+                <div class="remove-btn button">Remove</div>
+                <div class="edit-btn button">Edit</div>
+              </div>
+            </li> -->
+          </ul>
+        </div>
+        <div class="add-new-item-container">
+          <div class="add-new-item">
+            <div class="dashed-border">
+              <h3>+ Add new Item</h3>
+            </div>
+          </div>
+        </div>
+        <!-- ADDING/EDITING ITEM -->
+        <div id="adding-item-by-artist" class="slide-down">
+          <div class="add-item-header">
+            <h1>Add new item</h1>
+            <div class="is-published">
+              <label class="checkbox-container">
+                <h4>Is&nbsp;Published</h4>
+                <input type="checkbox" id="is-published-checkbox" checked />
+                <!-- Add the "checked" attribute here -->
+                <span class="checkmark"></span>
+              </label>
+            </div>
+          </div>
+          <div class="form-container">
+            <form id="filter-form">
+              <div class="form-row">
+                <div>
+                  <label for="add-title">Title:</label>
+                  <input type="text" id="add-title" name="add-title" required />
+                </div>
+              </div>
+              <div class="form-row">
+                <div>
+                  <label for="add-description">Description:</label>
+                  <textarea
+                    id="add-description"
+                    name="add-description"
+                  ></textarea>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="w50">
+                  <div>
+                    <label for="add-type">Type:</label>
+                    <input type="text" id="add-type" name="add-type" required />
+                  </div>
+                </div>
+                <div class="w50">
+                  <div>
+                    <label for="add-price">Price:</label>
+                    <input
+                      type="number"
+                      id="add-price"
+                      name="add-price"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div>
+                  <label for="add-image-url">Image URL:</label>
+                  <input type="text" id="add-image-url" name="add-image-url" />
+                </div>
+              </div>
+              <h4 class="separator">or</h4>
+              <div class="take-picture">
+                <div class="image-container">
+                  <div class="inner-content">
+                    <i class="fas fa-camera fa-lg"></i>
+                    <h4>Take a snapshot</h4>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row submit-buttons">
+                <button class="button add-btn" type="submit">
+                  Add New Item
+                </button>
+                <button class="button cancel-btn" type="button">Cancel</button>
+              </div>
+              <input type="hidden" name="editing-item-id" />
+            </form>
+          </div>
+        </div>
+        <div id="take-snapshot-window" class="resize">
+          <div class="camera-box">
+            <!-- Add a button to trigger image capture -->
+            <!-- <button id="captureImageBtn">
+              <i class="fas fa-camera fa-lg"></i> Capture Image
+            </button> -->
+            <input type="file" accept="image/*" capture="camera" id="imageInput" style="display: none;">
+            <img id="capturedImage" alt="Captured Image Preview">
+          </div>
+          <div class="snapshot-button-box">
+            <div id="captureImageBtn" class="snapshot-button">
+              <i class="fas fa-camera fa-lg"></i>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+    <!-- *AUCTION content -->
+    <section class="page-section" id="auction">
+      <div class="header shadow-box">
+        <div class="logo-image">
+          <div class="logo-background shadow-box"></div>
+          <a href="#landing-page"><img src="./img/Logo.png" alt="Logo" /></a>
+        </div>
+        <div class="place-holder"></div>
+        <h2 class="header-text">Live Auction</h2>
+        <div class="icon">
+          <i class="fas fa-angle-left go-back"></i>
+        </div>
+      </div>
+      <div id="auction-page">
+        <div class="auction-image">
+          <img src="./img/art/pexels-photo-10.jpg" alt="art" />
+        </div>
+        <div class="auction-info">
+          <div class="timer">
+            <h4>bid closes in</h4>
+            <span class="time"></span>
+          </div>
+          <div class="current-bid auction-content">
+            <h4>Current bid</h4>
+            <span
+              >$<span class="bid-amount"><!-- 0 --></span></span
+            >
+          </div>
+          <div class="total-bids">
+            <h4>total Bids</h4>
+            <span class="total-amount-of-bids"><!-- 0 --></span>
+          </div>
+        </div>
+        <div class="bid-description">
+          <h2 class="auction-artist-name"><!-- Artist name --></h2>
+          <h4 class="auction-title-name"><!-- Item Title --></h4>
+          <p class="auction-description">
+            <!-- Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed velit
+            a consequatur ipsum! Doloribus nobis laudantium perspiciatis eaque,
+            dolorem vero -->
+          </p>
+        </div>
+        <div class="current-bids">
+          <div class="bid-item">
+            <div class="current-bid-details">
+              <div><i class="fas fa-gavel"></i></div>
+              <div class="bid-item-info">
+                <h4>Bidder</h4>
+                <span class="bid-time">00:00:00</span>
+              </div>
+            </div>
+            <div class="bid-amount-price">
+              <span>$0</span>
+            </div>
+          </div>
+        </div>
+        <div class="place-bid auction-button-content">
+          <div class="place-amount">
+            <h4 class="minimum-bid">
+              Minimum bid: $<span class="minimum-sum">0</span>
+            </h4>
+            <input
+              type="number"
+              class="button"
+              placeholder="$ your bid price"
+            />
+          </div>
+
+          <div class="confirm-bid">
+            <button class="button">PLACE BID</button>
+          </div>
+        </div>
+      </div>
+      <div id="previous-auction-page">
+        <div class="inner-content-page">
+          <h1>There is no auction at the moment.</h1>
+          <h4>
+            Last auction by:
+            <span class="previous-artist-name">Name</span>
+          </h4>
+          <img class="previous-art" src="" alt="previous aucitoned art" />
+          <div class="previous-price-sold-container">
+            Price auctioned for: $<span class="previous-price-sold">0</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- *404 PAGE -->
+    <section id="not-found" class="page-section">
+      <a href="#landing-page"> <img src="./img/Logo.png" alt="logo" /></a>
+      <h1>404 Error</h1>
+      <p>Page not found.</p>
+      <br>
+      <a class="go-back" href="#landing-page">Go back</a>
+    </section>
+
+    <!-- *JavaScript--------------------------------------------------->
+
+    <!-- Link to Bootstrap5.3 and popper -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <!-- Link to jQuery from CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Artist items data -->
+    <script src="./js/data.js"></script>
+    <!-- SPA routing -->
+    <script src="./js/main.js"></script>
+    <!-- #landing-page section -->
+    <script src="./js/dropdown.js"></script>
+    <!-- #navbar and routing for artist section -->
+    <script src="./js/artist/nav_routing.js"></script>
+    <!-- #artist/items section -->
+    <script src="./js/artist/items.js"></script>
+    <!-- #artist/home section -->
+    <script src="./js/artist/home.js"></script>
+    <!-- #artist/auction section -->
+    <script src="./js/artist/auction.js"></script>
+    <!-- #visitor-filters -->
+    <script src="./js/landing_page.js"></script>
+    <!-- #visitor-page section -->
+    <script src="./js/visitor/home_page.js"></script>
+    <!-- #dropdowns-->
+    <script src="./js/visitor/filters.js"></script>
+  </body>
+</html>

@@ -1,0 +1,267 @@
+@use "../abstracts/mixins" as mix;
+@use "../abstracts/variables" as var;
+@use "sass:math";
+
+/* ITEMS SECTION=================================== */
+#items {
+    height: 100vh;
+    background-color: var.$background-normal;
+    .add-new-item-container {
+      padding: 20px 0;
+    }
+    .add-new-item {
+      .dashed-border {
+        cursor: pointer;
+        padding: 25px 0;
+        border: 2px dashed var.$primary-default;
+      }
+      h3 {
+        color: var.$primary-default !important;
+      }
+      text-align: center;
+      padding: 12px;
+  
+      background-color: var.$background-light;
+      box-shadow: var.$box-shadow;
+    }
+  
+    .listing-item-container {
+      margin-bottom: 25px;
+      box-shadow: var.$box-shadow-stronger;
+      .listing-image-container {
+        height: 150px !important;
+        overflow: hidden;
+        box-shadow: var.$box-shadow;
+        img {
+          transition: ease-in-out 0.3s;
+          &:hover,
+          :active {
+            transform: scale(1.2);
+            overflow: hidden;
+          }
+        }
+      }
+      .listing-content {
+        position: relative;
+        padding: 10px;
+        .price {
+          font-weight: var.$font-weight-normal;
+          background-color: var.$primary-default;
+          border-radius: 3px;
+          box-shadow: var.$box-shadow;
+          position: absolute;
+          right: 10px;
+          top: 10px;
+        }
+        h4 {
+          margin-bottom: 2px;
+        }
+        .date {
+          padding-bottom: 10px;
+          font-size: 8px;
+          color: var.$primary-contrast;
+        }
+      }
+      background-color: var.$background-light;
+    }
+    .item-buttons {
+      padding: 10px;
+      background-color: var.$primary-default;
+      display: flex;
+      text-align: center;
+      justify-content: space-between;
+      gap: 10px;
+      .button {
+        display: block;
+        border: none;
+        border-radius: 3px;
+        padding: 5px;
+        font-size: var.$font-size-base;
+        box-shadow: var.$box-shadow;
+        font-weight: var.$font-weight-bold;
+      }
+    }
+  }
+  
+  /* *ADDING/EDITING ITEM ======================== */
+  
+  #adding-item-by-artist {
+    overflow: auto;
+    display: block;
+    z-index: 5;
+    width: 100%;
+    bottom: 100%;
+    margin-top: 50px;
+    transition: 0.2s ease-in;
+    position: fixed;
+    padding: 10px;
+    padding-top: 50px;
+    height: 96vh;
+    background-color: var.$primary-default;
+    color: var.$background-light;
+    .add-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .is-published {
+      padding-top: 7px;
+      margin-right: 23px;
+    }
+  }
+  
+  /* STYLE FOR FORM EDIT/ADD === */
+  
+  .form-container {
+    width: 100%;
+    margin: 0 auto;
+  
+    .form-row {
+      margin-bottom: 15px;
+      display: flex;
+      gap: 15px;
+    }
+    .form-row > div {
+      width: 100%;
+    }
+    .w50 {
+      display: flex;
+      gap: 10px;
+    }
+  
+    label {
+      margin-bottom: 5px;
+    }
+  
+    input[type="text"],
+    textarea, input[type="number"] {
+      width: 100%;
+      height: 25px;
+      padding: 5px;
+      border: 2px solid var.$background-light;
+      border-radius: 2px;
+      background-color: var.$primary-default;
+      &:focus {
+       outline: 2px solid var.$background-dark;
+      }
+    }
+    #add-description{
+      min-height: 100px;
+      word-wrap: break-word;
+    }
+  
+  
+    .separator {
+      text-align: center;
+      width: 100%;
+      margin-bottom: 15px;
+    }
+    .take-picture {
+      cursor: pointer;
+      border: 2px dashed var.$background-light;
+      .image-container {
+        display: grid;
+        place-items: center;
+        text-align: center;
+        top: 10px;
+        height: 300px;
+        position: relative;
+        .inner-content {
+          //position: absolute;
+          i{
+            font-size: 50px;
+            &:hover{
+              transform: none;
+              color: inherit;
+            }
+          }
+          h4{
+            margin-top: 5px;
+          }
+        }
+      }
+    }
+    .submit-buttons {
+      margin: 20px 0;
+    }
+  
+    button {
+      display: block;
+      width: 50%;
+      text-align: center !important;
+      border: none;
+      border-radius: 2px;
+      width: 100% !important;
+    }
+  }
+  
+  /* STYLE FOR CHECKBOX === */
+  input[type="checkbox"] {
+    display: none;
+  }
+  
+  .checkbox-container {
+    position: relative;
+    cursor: pointer;
+  }
+  .checkmark {
+    position: absolute;
+    top: 0;
+    right: -22px;
+    height: 15px;
+    width: 15px;
+    background-color: var.$primary-default;
+    border: 1px solid var.$background-normal;
+    border-radius: 2px;
+  }
+  input[type="checkbox"]:checked + .checkmark {
+    background-color: var.$background-light;
+  }
+  .checkmark:after {
+    content: "\2713";
+    position: absolute;
+    display: none;
+  }
+  input[type="checkbox"]:checked + .checkmark:after {
+    display: block;
+    color: var.$primary-default;
+    width: 15px;
+    height: 10px;
+    top: -5px;
+  }
+  /* END OF CHECKBOX ==== */
+
+
+  /* SNAPSHOT WINDOW ======================== */
+
+  #take-snapshot-window{
+    z-index: 8;
+    margin-top: 50px;
+    width: 100%;
+    height: 96vh;
+    top: 0;
+    padding: 10px;
+    background-color: rgba(var.$primary-default, $alpha: 1);
+    position: fixed;
+    transition: 0.2s ease;
+    border-radius: 40px;
+
+    .camera-box{
+        height: 70vh;
+        margin: 10px;
+        margin-top: 50px;
+        box-shadow: var.$box-shadow-strongest;
+        //background-image: url(./../img/art/pexels-photo-13.jpg);
+    }
+    .snapshot-button-box{
+        height: 100px;
+        color: var.$background-light;
+        font-size: 35px;
+        display: grid;
+        place-items: center;
+        text-align: center;
+    }
+    .snapshot-button{
+        cursor: pointer;
+    }
+}

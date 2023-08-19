@@ -1,0 +1,267 @@
+@use "../abstracts/mixins" as mix;
+@use "../abstracts/variables" as var;
+@use "sass:math";
+
+/* LISTING ITEMS ==================== */
+#listing-page {
+  position: relative;
+  .header {
+    background-color: var.$background-light;
+  }
+  background-color: var.$background-normal;
+  margin-bottom: 95px;
+}
+
+#all-listing-item-container {
+  width: 100%;
+  overflow: hidden;
+  @include mix.laptop {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  background-color: var.$background-normal;
+  margin-bottom: 20px;
+  li:nth-child(odd) {
+    .badge {
+      background-color: var.$primary-default;
+      color: var.$background-light;
+    }
+    background-color: var.$background-light;
+  }
+  li:nth-child(even) {
+    background-color: var.$primary-default;
+    color: var.$background-light;
+    .badge {
+      background-color: var.$background-light;
+      color: var.$primary-default;
+    }
+  }
+  .listing-item-container {
+    margin-bottom: 40px;
+    box-shadow: -2px 3px 6px 0px #00000082;
+  }
+  .listing-image-container {
+    height: 180px;
+    transition: 0.4s ease-in-out;
+    &:hover {
+      transition: 0.4s ease-in-out;
+      height: 350px;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    @include mix.laptop {
+      height: 350px;
+      &:hover {
+        transition: 0.4s ease-in-out;
+        height: 650px;
+      }
+    }
+  }
+  .listing-content {
+    position: relative;
+    padding: 5px 20px;
+    .badge {
+      position: absolute;
+      border-radius: 2px;
+      padding: 5px 9px;
+      right: 20px;
+      top: 10px;
+      box-shadow: var.$box-shadow-stronger;
+    }
+  }
+}
+/* FILTERING SECTION ==================== */
+
+
+#filtering-section {
+  
+  h3 {
+    font-weight: var.$font-weight-user;
+    color: var.$background-light;
+  }
+  display: block;
+  height: 100vh;
+  width: 100%;
+  bottom: 100%;
+  padding: 20px;
+  transition: 0.2s ease-in;
+  position: fixed;
+  background-color: var.$primary-default;
+  h1 {
+    margin-top: 22px;
+    color: var.$background-normal;
+  }
+  .filter-container {
+    padding-bottom: 150px;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    gap: 30px;
+  }
+  .filter-container > div {
+    padding: 20px 0;
+    border-bottom: 2px solid var.$background-light;
+  }
+  .filter-container::-webkit-scrollbar{
+    display: none;
+  }
+  input,
+  select,
+  .button {
+    width: 100px;
+    margin: 5px 0;
+    &:hover {
+      transform: none;
+      color: var.$background-light;
+    }
+
+    &::placeholder {
+      color: var.$background-light;
+    }
+  }
+  .prices {
+    display: flex;
+    justify-content: space-between;
+    .button {
+      width: 65px;
+    }
+    .min-price,
+    .max-price {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+  }
+  .close-button {
+    background-color: var.$primary-default;
+    cursor: pointer;
+    height: 65px;
+    width: 65px;
+    position: absolute;
+    right: 5px;
+    top: 30px;
+    .x-line {
+      position: absolute;
+      border-radius: 50%;
+      width: 3px;
+      height: 100%;
+      background-color: var.$background-light;
+      opacity: 0.7;
+    }
+    .x1 {
+      transform: translateX(30px) rotate(45deg);
+    }
+    .x2 {
+      transform: translateX(30px) rotate(-45deg);
+    }
+  }
+
+  .form-select {
+    outline: none;
+    cursor: pointer;
+    option {
+      color: var.$primary-default;
+      background-color: var.$background-light;
+    }
+  }
+}
+
+/* FILTER BUTTON STYLE ======================== */
+.filter-button {
+  padding: 10px 10px;
+  display: flex;
+  justify-content: space-around;
+  position: fixed;
+  z-index: 5;
+  right: 14px;
+  bottom: 14px;
+  height: 65px;
+  width: 65px;
+  border-radius: 6px;
+  background-color: var.$primary-contrast;
+  transition: 0.2s ease-out;
+  cursor: pointer;
+  &:active {
+    background-color: rgb(255, 72, 0);
+  }
+  &:hover {
+    // hover animations
+    transform: scale(108%);
+    .vertical-line:nth-child(1) .horizontal-line {
+      top: 40%;
+    }
+    .vertical-line:nth-child(2) .horizontal-line {
+      top: 70%;
+    }
+    .vertical-line:nth-child(3) .horizontal-line {
+      top: 20%;
+    }
+  }
+
+  //styles for the button
+  .vertical-line {
+    position: relative;
+    width: 4px;
+    height: 100%;
+    background-color: white;
+    transition: 0.5s ease-out;
+
+    .horizontal-line {
+      position: absolute;
+      left: -3px;
+      width: 11px;
+      height: 5px;
+      background-color: white;
+      transition: 0.5s ease-out;
+    }
+  }
+  .vertical-line:nth-child(1) .horizontal-line {
+    top: 70%;
+  }
+  .vertical-line:nth-child(2) .horizontal-line {
+    top: 20%;
+  }
+  .vertical-line:nth-child(3) .horizontal-line {
+    top: 55%;
+  }
+  //classes for animating the button on click
+  .hl-1,
+  .hl-2,
+  .hl-3 {
+    transition: 2s ease-out;
+    opacity: 0;
+  }
+  .hl-1 {
+    transform: translateY(-25px);
+  }
+  .hl-2 {
+    transform: translateY(20px);
+  }
+  .hl-3 {
+    transform: translateY(-20px);
+  }
+  .vl-1,
+  .vl-2,
+  .vl-3 {
+    border-radius: 5px;
+    transition: 0.5s ease-in-out;
+  }
+  .vl-1 {
+    transform: translate(5px, 19px) rotate(-39deg);
+    height: 54% !important;
+  }
+  .vl-2 {
+    transform: translate(-5px, 20px) rotate(-39deg);
+    height: 70%;
+    height: 50%;
+    opacity: 0;
+  }
+  .vl-3 {
+    transform: translate(-8px, 0px) rotate(27deg);
+  }
+}

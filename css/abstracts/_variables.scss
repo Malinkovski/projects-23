@@ -1,0 +1,50 @@
+@use 'sass:math';
+
+@function rem-calc($size) {
+  @return (math.div($size, 16)) * 1rem;
+}
+
+// Font settings
+$font-family-base:           'Roboto', sans-serif;
+$font-family-cursive:        'Reenie Beanie';
+$font-size-base:             rem-calc(11);
+$font-size-heading:          rem-calc(30);
+$font-size-subtitle:         rem-calc(14);
+$font-size-cursive:          rem-calc(30);
+$font-size-user:             rem-calc(15);
+$font-size-button:           rem-calc(25);
+$font-size-button-big:       rem-calc(40);
+
+$line-height-base:           1.5;
+
+$font-weight-normal:         400;
+$font-weight-bold:           900;
+$font-weight-button:         700;
+$font-weight-user:           100;
+
+// Size settings
+$gutter-base:                rem-calc(30);
+
+// Color settings
+$text-none:                  #000000;
+$text-default:               #5A5A5A;
+$text-muted:                 #B9B9B9;
+
+$background-light:           #FCEBD5;
+$background-normal:          #EDD5BB;
+$background-dark:            #E09686;
+$background-gray:            #E5E5E5;
+
+$primary-default:            #A16A5E;
+$primary-light:              #E5E5E5;
+$primary-contrast:           #D44C2E;
+$primary-blue:               #1B59AC;
+$primary-green:              #1BAC6F;
+
+$primary-default-darker:     #7e5147;
+$primary-default-op-50:      #a16a5ea1;
+
+//box-shadow
+$box-shadow:                   0px 2px 2px 0px #00000040;
+$box-shadow-stronger:          0px 2px 2px 0px #00000040;
+$box-shadow-strongest:        -2px 3px 7px 3px #000000a1;

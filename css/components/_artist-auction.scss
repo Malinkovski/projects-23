@@ -1,0 +1,124 @@
+@use "../abstracts/mixins" as mix;
+@use "../abstracts/variables" as var;
+@use "sass:math";
+
+.auction-image {
+  img {
+    transition: 0.5s ease-in;
+    object-fit: cover;
+    &:hover {
+      transform: scale(110%);
+    }
+  }
+  height: 240px;
+  overflow: hidden;
+}
+.auction-info {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 5px;
+  text-align: center;
+  background-color: var.$background-normal;
+  box-shadow: var.$box-shadow-stronger;
+}
+.bid-description {
+  padding: 25px 5px;
+  text-align: center;
+}
+
+.bid-item {
+  display: flex;
+  justify-content: space-between;
+  border: dashed 2px var.$primary-default;
+  padding: 5px 20px;
+  margin: 12px;
+  margin-right: 25px;
+  align-items: center;
+}
+.current-bids {
+  border-top: dotted 1px var.$primary-default;
+  border-bottom: dotted 1px var.$primary-default;
+  max-height: 250px;
+  margin: 0px 10px;
+  padding: 15px 0px;
+  overflow-y: auto;
+  .current-bid-details {
+    gap: 20px;
+    align-items: center;
+    display: flex;
+    text-align: center;
+  }
+}
+.place-bid {
+  display: flex;
+  margin: 10px;
+  margin-top: 30px;
+  text-align: center;
+  align-items: center;
+  justify-content: space-around;
+  h4 {
+    font-size: 9px;
+  }
+  .minimum-bid {
+    position: absolute;
+    top: -12px;
+    right: 0%;
+    transform: translateX(-50%);
+    z-index: 3;
+  }
+  .place-amount {
+    position: relative;
+  }
+  .button {
+    display: block;
+    background-color: var.$background-light;
+    border-color: var.$primary-default;
+    font-size: 12px;
+    height: 30px;
+    color: var.$primary-contrast;
+    box-shadow: var.$box-shadow-stronger;
+    width: 125px;
+    @include mix.mobile-m-styles {
+      width: 115px !important;
+    }
+    @include mix.mobile-s-styles {
+      width: 100px !important;
+    }
+  }
+  button {
+    border-color: var.$primary-contrast !important;
+    color: var.$primary-light !important;
+    background-color: var.$primary-contrast !important;
+  }
+}
+
+.auction-button-content {
+  display: none;
+}
+#auction-page {
+  display: none;
+}
+#previous-auction-page {
+  display: none;
+  text-align: center;
+  padding-top: 5vh;
+  h1 {
+    margin-right: auto;
+    margin-left: auto;
+    width: 50%;
+  }
+  .inner-content-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .last-art {
+      width: 80%;
+      border-radius: 5px;
+      box-shadow: var.$box-shadow-stronger;
+    }
+  }
+  .inner-content-page > * {
+    margin-bottom: 20px;
+  }
+}

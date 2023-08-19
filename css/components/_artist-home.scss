@@ -1,0 +1,100 @@
+@use "../abstracts/mixins" as mix;
+@use "../abstracts/variables" as var;
+@use "sass:math";
+
+.artist-home {
+  /* nav-dropdown ===================== */
+  position: relative;
+  .artist-dropdown {
+    display: block;
+    z-index: 10;
+    width: 100%;
+    bottom: 96%;
+    padding: 20px;
+    transition: 0.2s ease-in;
+    position: fixed;
+    background-color: var.$primary-default;
+    color: var.$background-light;
+    text-align: center;
+    padding: 30px 5px;
+    box-shadow: 0px 2px 7px 4px #00000070;
+    li {
+      margin-right: auto;
+      margin-left: auto;
+      width: 92%;
+    }
+    .nav-option {
+      font-size: var.$font-size-heading;
+      display: block;
+      padding: 2px;
+      margin: 5px;
+      transition: ease-in-out 0.2s;
+      cursor: pointer;
+      &:hover,
+      :active {
+        transform: scale(106%);
+        background-color: var.$primary-default-darker;
+      }
+    }
+  }
+}
+/* EARNINGS SECTION ==================================== */
+.earnings-section {
+  padding-top: 11px;
+  background-color: var.$background-normal;
+  display: flex;
+  flex-wrap: wrap;
+  .earnings-content {
+    margin: 10px;
+    background-color: var.$primary-default;
+    text-align: center;
+    color: var.$background-light;
+    padding: 15px;
+    font-size: 40px;
+    @include mix.mobile-m-styles {
+      font-size: 30px;
+    }
+    @include mix.mobile-s-styles {
+      font-size: 25px;
+    }
+  }
+  #live-auction-widget{
+    cursor: pointer;
+  }
+}
+/* CHART SECTION ========================================= */
+.chart-section {
+  #b-365-days{
+    width: 55px !important;
+  }
+  h3 {
+    color: var.$primary-default;
+  }
+  width: 100%;
+  padding: 10px;
+  .income-days {
+    display: flex;
+    gap: 15px;
+    justify-content: space-between;
+    margin: 20px 0;
+    text-align: center;
+  }
+  .button {
+    display: block;
+    width: 40px;
+    font-size: 11px;
+    padding: 5px;
+    &:hover,
+    :active {
+      transform: scale(105%);
+      background-color: var.$primary-default-darker;
+    }
+  }
+  .button.active {
+    background-color: var.$primary-contrast;
+  }
+}
+
+.chartBox{
+  height: 350px;
+}

@@ -66,8 +66,9 @@ function populateEarningsData() {
 //Chart method
 let myChart = null;
 
+const array = JSON.parse(localStorage.getItem("artistItems"));
 const selectedArtistName = localStorage.getItem("selectedArtistName");
-const dateSoldArray = getDateSoldByArtist(artistItems, selectedArtistName);
+const dateSoldArray = getDateSoldByArtist(array, selectedArtistName);
 
 function getDateSoldByArtist(array, selectedArtistName) {
   const dateSoldArray = array

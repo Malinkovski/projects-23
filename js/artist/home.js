@@ -72,9 +72,10 @@ const dateSoldArray = getDateSoldByArtist(array, selectedArtistName);
 
 function getDateSoldByArtist(array, selectedArtistName) {
   const dateSoldArray = array
-    .filter((item) => item.artist === selectedArtistName)
-    .map((item) => item.dateSold); // Getting all the dates that matches the local storage key artist
-  return dateSoldArray.map((dateSold) => dateSold.slice(0, 10)); // Formating ther data to yyyy-mm-dd
+    .filter((item) => item.artist === selectedArtistName && item.dateSold !== null)
+    .map((item) => item.dateSold);
+
+  return dateSoldArray.map((dateSold) => dateSold.slice(0, 10));
 }
 
 const buttons = document.querySelectorAll(".income-days .button");
@@ -149,12 +150,13 @@ function renderChart() {
     }
     data = dateLabels.map(
       (label) =>
-        filteredDateSoldArray.filter((dateSold) => dateSold === label).length
+        filteredDateSoldArray.filter((dateSold) => dateSold && dateSold === label)
+          .length
     );
   }
 
   //_________________________________________
- /* Chart configs */
+  /* Chart configs */
   myChart = new Chart(ctx, {
     type: "bar",
     data: {

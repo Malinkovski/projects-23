@@ -41,6 +41,10 @@ imageInput.addEventListener("change", (event) => {
 function saveToLocalStorage() {
   localStorage.setItem("artistItems", JSON.stringify(artistItems));
 }
+//first time creating localstorage for the artist items if there is none
+if (!localStorage.hasOwnProperty('artistItems')) {
+  saveToLocalStorage();
+}
 // Load artistItems array from local storage
 function loadFromLocalStorage() {
   const storedItems = localStorage.getItem("artistItems");

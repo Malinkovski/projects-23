@@ -1,4 +1,3 @@
-//const artistHomeSection = document.querySelector("#artist/home");
 const totalItemsSold = document.querySelector(".total-items-sold span");
 const totalIncome = document.querySelector(".total-income");
 const liveAuctionWidget = document.querySelector(
@@ -10,6 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
   populateEarningsData();
   renderChart();
 });
+
+let liveAuctionItem = null;
 
 function populateEarningsData() {
   const selectedArtistName = localStorage.getItem("selectedArtistName");
@@ -34,17 +35,17 @@ function populateEarningsData() {
     totalItemsSold.textContent = `${soldItemsCount}/${totalItemsCount}`;
     totalIncome.textContent = `$${totalIncomeCount}`;
 
-    const liveAuctionItem = artistItems.find(
+    liveAuctionItem = artistItems.find(
       (item) => item.artist === selectedArtistName && item.isAuctioning
     );
     if (liveAuctionItem) {
       const liveAuctionWidget = document.querySelector("#live-auction-widget");
       liveAuctionWidget.style.display = "block";
-      liveAuctionWidget.querySelector(
-        ".total-items-sold"
-      ).textContent = `$${liveAuctionItem.price}`;
+      liveAuctionWidget.querySelector(".total-items-sold").textContent = `$${
+        liveAuctionItem.price / 2
+      }`;
 
-      // rerouting to auction on click if theres any item on auction
+      // Rerouting to auction on click if theres any item on auction
       liveAuctionWidget.addEventListener("click", () => {
         subSections.forEach((section) => {
           section.style.display = "none";
@@ -61,7 +62,6 @@ function populateEarningsData() {
     liveAuctionWidget.style.display = "none";
   }
 }
-
 //____________________________________________________________________
 //Chart method
 let myChart = null;
@@ -73,11 +73,9 @@ const dateSoldArray = getDateSoldByArtist(array, selectedArtistName);
 function getDateSoldByArtist(array, selectedArtistName) {
   const dateSoldArray = array
     .filter((item) => item.artist === selectedArtistName)
-    .map((item) => item.dateSold); // getting all the dates that matches the local storage key artist
-  return dateSoldArray.map((dateSold) => dateSold.slice(0, 10)); // formating ther data to yyyy-mm-dd
+    .map((item) => item.dateSold); // Getting all the dates that matches the local storage key artist
+  return dateSoldArray.map((dateSold) => dateSold.slice(0, 10)); // Formating ther data to yyyy-mm-dd
 }
-
-
 
 const buttons = document.querySelectorAll(".income-days .button");
 buttons.forEach((button) => {
@@ -85,8 +83,8 @@ buttons.forEach((button) => {
 });
 
 //________________________________________________
-//button functionality
-let dateRange = 14; // default date range
+// Button functionality
+let dateRange = 14; // Default date range
 
 buttons.forEach((button) => {
   button.addEventListener("click", handleButtonClick);
@@ -105,26 +103,26 @@ function handleButtonClick(event) {
 
   clickedButton.classList.add("active");
 
-  // destroy previous chart
+  // Destroy previous chart
   if (myChart) {
     myChart.destroy();
   }
 
-  // update and render the chart
+  // Update and render the chart
   renderChart();
 }
 
-// rendering the chart
+// Rendering the chart
 function renderChart() {
   const ctx = document.getElementById("myChart").getContext("2d");
 
-  // creating array labels for the x: based on dateRange
+  // Creating array labels for the x: based on dateRange
   const filteredDateSoldArray = dateSoldArray.slice(0, dateRange);
 
   let dateLabels = [];
   let data = [];
 
-  // creating the dates for the yearly option
+  // Creating the dates for the yearly option
   if (dateRange === 12) {
     const monthlyCounts = Array(12).fill(0); //empty array for the months
     dateSoldArray.forEach((dateSold) => {
@@ -134,20 +132,20 @@ function renderChart() {
     });
     data = [...monthlyCounts];
 
-    // formatin the dates for the yaerly option
+    // Formating the dates for the yaerly option
     const currentYear = new Date().getFullYear();
     for (let month = 0; month < 12; month++) {
       const monthName = new Date(currentYear, month).toLocaleDateString(
         "en-US",
-        { year: "numeric", month: "long" } // yyyy mmmmmm
+        { year: "numeric", month: "long" } // yyyy/mmmmmm
       );
       dateLabels.push(monthName);
     }
   } else {
     for (let dayOffset = dateRange - 1; dayOffset >= 0; dayOffset--) {
-      const currentDate = new Date(); //!TESTING DATE ONLY// // new Date();
-      currentDate.setDate(currentDate.getDate() - dayOffset); // ajdusting the date to current day with offset
-      dateLabels.push(currentDate.toISOString().slice(0, 10)); // format to yyyy-mm-dd
+      const currentDate = new Date(); //!TESTING DATE// //currently new Date() original;
+      currentDate.setDate(currentDate.getDate() - dayOffset); // Ajdusting the date to current day with offset
+      dateLabels.push(currentDate.toISOString().slice(0, 10)); // Format to yyyy-mm-dd
     }
     data = dateLabels.map(
       (label) =>
@@ -156,7 +154,7 @@ function renderChart() {
   }
 
   //_________________________________________
-  // chart configs
+ /* Chart configs */
   myChart = new Chart(ctx, {
     type: "bar",
     data: {

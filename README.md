@@ -44,4 +44,4 @@ Adding functionality for the bidding in Auction page.
 
 ## Project status
 
-Not finished, Auction section still work in progress.
+Not finished, Auction section still work in progress, missing API functionality.

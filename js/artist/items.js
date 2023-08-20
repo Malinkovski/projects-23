@@ -6,9 +6,9 @@ const closeItemBtn = document.querySelector(".submit-buttons .cancel-btn");
 const snapshotBtn = document.querySelector(".snapshot-button");
 const takepictureBtn = document.querySelector(".take-picture");
 const addItemForm = document.querySelector("#filter-form");
-const captureImageBtn = document.getElementById('captureImageBtn');
-const imageInput = document.getElementById('imageInput');
-const capturedImageImg = document.getElementById('capturedImage');
+const captureImageBtn = document.getElementById("captureImageBtn");
+const imageInput = document.getElementById("imageInput");
+const capturedImageImg = document.getElementById("capturedImage");
 
 addItemForm.addEventListener("submit", handleFormSubmit);
 addNewItemBtn.addEventListener("click", () => {
@@ -23,7 +23,7 @@ let artistItems = [...items];
 let currentAuctionItemId = null;
 let capturedImageData = null;
 
-imageInput.addEventListener('change', (event) => {
+imageInput.addEventListener("change", (event) => {
   const selectedImage = event.target.files[0];
 
   if (selectedImage) {
@@ -37,11 +37,11 @@ imageInput.addEventListener('change', (event) => {
   }
 });
 
-// save artistItems array to local storage
+// Save artistItems array to local storage
 function saveToLocalStorage() {
   localStorage.setItem("artistItems", JSON.stringify(artistItems));
 }
-// load artistItems array from local storage
+// Load artistItems array from local storage
 function loadFromLocalStorage() {
   const storedItems = localStorage.getItem("artistItems");
   if (storedItems) {
@@ -79,7 +79,7 @@ function renderItems() {
       </p>
     </div>
     <div class="item-buttons">
-    <div class="send-btn button" onclick="toggleAuctionStatus(${item.id})">
+    <div class="send-btn button" onclick="toggleAuctionStatus(${item.id})"> 
       ${item.isAuctioning ? "On Auction" : "Send to Auction"}
     </div>
     ${
@@ -100,7 +100,7 @@ function renderItems() {
   publishUnpublishBtn();
 }
 
-// handle the form for add/edit an item
+// Handle the form for add/edit an item
 function handleFormSubmit(event) {
   event.preventDefault();
   const addItemForm = document.querySelector("#filter-form");
@@ -126,7 +126,7 @@ function handleFormSubmit(event) {
   };
 
   const editingItemId = parseInt(formData.get("editing-item-id"));
-  // if editing an existing item
+  // If editing an existing item
   if (editingItemId) {
     const editingItemIndex = artistItems.findIndex(
       (item) => item.id === editingItemId
@@ -135,7 +135,7 @@ function handleFormSubmit(event) {
       artistItems[editingItemIndex] = newItem;
     }
   } else {
-    // if adding a new item to the array
+    // If adding a new item to the array
     artistItems.push(newItem);
   }
   capturedImageData = null;
@@ -146,7 +146,7 @@ function handleFormSubmit(event) {
 }
 
 //_______________________________________________________________
-// function to remove an item
+// Function to remove an item
 function removeItemBtn() {
   document.querySelectorAll(".remove-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -165,16 +165,15 @@ function removeItem(itemId) {
   if (itemIndex !== -1) {
     artistItems.splice(itemIndex, 1);
     saveToLocalStorage();
-    // rerender the cards after removing one
+    // Rerender the cards after removing one
     renderItems();
   }
 }
 //_______________________________________________________________
-// function to edit an item
+// Function to edit an item
 function editItemBtn() {
   document.querySelectorAll(".edit-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
-      //confirmItemBtn.innerHTML = "Confirm edit";
       const itemId = parseInt(btn.dataset.itemId);
       editItem(itemId);
     });
@@ -196,7 +195,7 @@ function editItem(itemId) {
   }
 }
 //_______________________________________________________________
-// function to publish/unpublish an item
+// Function to publish/unpublish an item
 function publishUnpublishBtn() {
   document
     .querySelectorAll(
@@ -211,7 +210,7 @@ function publishUnpublishBtn() {
 }
 
 //_____________________________________________________________
-// toggle the publish status for an item
+// Toggle the publish status for an item
 function togglePublishStatus(itemId) {
   const item = artistItems.find((item) => item.id === itemId);
   item.isPublished = !item.isPublished; // Change publish status
@@ -219,15 +218,14 @@ function togglePublishStatus(itemId) {
   renderItems(); // Update the items list with the latest status
 }
 
-
 //_____________________________________________________________
 /* SNAPSHOT METHOD */
 
-captureImageBtn.addEventListener('click', () => {
+captureImageBtn.addEventListener("click", () => {
   imageInput.click();
 });
 
-imageInput.addEventListener('change', (event) => {
+imageInput.addEventListener("change", (event) => {
   const selectedImage = event.target.files[0];
 
   if (selectedImage) {
@@ -235,7 +233,7 @@ imageInput.addEventListener('change', (event) => {
     reader.onload = (e) => {
       capturedImageImg.src = e.target.result;
 
-      const imageContainer = document.querySelector('.take-picture');
+      const imageContainer = document.querySelector(".take-picture");
       imageContainer.style.backgroundImage = `url(${e.target.result})`;
     };
     reader.readAsDataURL(selectedImage);

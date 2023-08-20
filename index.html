@@ -364,7 +364,7 @@
           <div class="w100 artist-bid">
             <div class="earnings-content bg-contrast" id="live-auction-widget">
               <a href="#auction"><h3>Live Auction Items</h3></a>
-              <div class="total-items-sold">$0</div>
+              <div class="total-items-sold live-auction">$0</div>
               <h4>current bid</h4>
             </div>
           </div>
@@ -499,10 +499,7 @@
         </div>
         <div id="take-snapshot-window" class="resize">
           <div class="camera-box">
-            <!-- Add a button to trigger image capture -->
-            <!-- <button id="captureImageBtn">
-              <i class="fas fa-camera fa-lg"></i> Capture Image
-            </button> -->
+
             <input type="file" accept="image/*" capture="camera" id="imageInput" aria-label="Upload an Image">
             <img id="capturedImage" alt="Captured Image Preview">
           </div>
@@ -557,7 +554,7 @@
           </p>
         </div>
         <div class="current-bids">
-          <div class="bid-item">
+<!--           <div class="bid-item">
             <div class="current-bid-details">
               <div><i class="fas fa-gavel"></i></div>
               <div class="bid-item-info">
@@ -568,7 +565,7 @@
             <div class="bid-amount-price">
               <span>$0</span>
             </div>
-          </div>
+          </div> -->
         </div>
         <div class="place-bid auction-button-content">
           <div class="place-amount">
@@ -579,6 +576,7 @@
               type="number"
               class="button"
               placeholder="$ your bid price"
+              id="bid-price-input"
             />
           </div>
 
@@ -594,9 +592,8 @@
             Last auction by:
             <span class="previous-artist-name">Name</span>
           </h4>
-          <img class="previous-art" src="" alt="previous aucitoned art" />
-          <div class="previous-price-sold-container">
-            Price auctioned for: $<span class="previous-price-sold">0</span>
+          <div style="width: 90%;">
+            <img class="previous-art" src="" alt="previous aucitoned art" />
           </div>
         </div>
       </div>
@@ -613,11 +610,15 @@
 
     <!-- *JavaScript--------------------------------------------------->
 
+
     <!-- Link to Bootstrap5.3 and popper -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
     <!-- Link to jQuery from CDN -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!--TODO: bundle with NPM webpack ? -->
+
     <!-- Artist items data -->
     <script src="./js/data.js"></script>
     <!-- SPA routing -->
@@ -631,6 +632,7 @@
     <!-- #artist/home section -->
     <script src="./js/artist/home.js"></script>
     <!-- #artist/auction section -->
+    <script src="./js/artist/previous-auction.js"></script>
     <script src="./js/artist/auction.js"></script>
     <!-- #visitor-filters -->
     <script src="./js/landing_page.js"></script>
@@ -638,5 +640,6 @@
     <script src="./js/visitor/home_page.js"></script>
     <!-- #dropdowns-->
     <script src="./js/visitor/filters.js"></script>
+ 
   </body>
 </html>

@@ -1,4 +1,4 @@
-//go back button to previous page for the auction page
+// Go back button to previous page for the auction page
 const goBackBtn = document.querySelector(".go-back");
 goBackBtn.addEventListener("click", goBack);
 
@@ -7,7 +7,10 @@ function goBack() {
 }
 
 //_______________________________________________________________________
-// enable/disable bidding
+/* Enable/disable bidding */
+
+const MINIMUM_UPBID = 50;
+
 const bidBtnContainer = document.querySelector(".auction-button-content");
 const visitorBid = document.querySelectorAll(".visitor-bid");
 const artistBid = document.querySelectorAll(".artist-bid");
@@ -46,7 +49,7 @@ function getDisplayBidBtnFromLocalStorage(element) {
 window.addEventListener("DOMContentLoaded", () => {
   const savedDisplay = getDisplayBidBtnFromLocalStorage(bidBtnContainer);
   bidBtnContainer.style.display = savedDisplay;
-
+  populateAuctionPageFromLocalStorage();
   // Check if there are items on auction and show/hide the auction page accordingly
   const isItemOnAuction = hasAuctionItem(artistItems);
   if (isItemOnAuction) {
@@ -77,7 +80,7 @@ artistBid.forEach((item) => {
 });
 
 //___________________________________________________________________
-// auction page display status
+/* Auction page display status */
 function hasAuctionItem(artistItems) {
   return artistItems.some((item) => item.isAuctioning === true);
 }
@@ -95,7 +98,7 @@ function updateAuctionPageStatus() {
 }
 
 //__________________________________________________________________________
-// auction info
+/* Auction info */
 
 function saveAuctionItemToLocalStorage(item) {
   localStorage.setItem("auctionItem", JSON.stringify(item));
@@ -126,19 +129,13 @@ function populateAuctionPageFromLocalStorage() {
   }
 }
 
-// on load populate the auction page from localStorage
-window.addEventListener(
-  "DOMContentLoaded",
-  populateAuctionPageFromLocalStorage
-);
-
 let countdownInterval;
 
 function toggleAuctionStatus(itemId) {
   let isItemOnAuction = false;
   const item = artistItems.find((item) => item.id === itemId);
 
-  // checking if other item from other artists item list has already isAuctioning = true status
+  // Checking if other item from other artists item list has already isAuctioning = true status
   artistItems.forEach((otherItem) => {
     if (otherItem.isAuctioning && otherItem.id !== itemId) {
       isItemOnAuction = true;
@@ -155,6 +152,7 @@ function toggleAuctionStatus(itemId) {
 
   if (item.isAuctioning) {
     saveAuctionItemToLocalStorage(item);
+    updateAndSavePreviousAuction(item);
     populateAuction();
     countdownInterval = startCountdown();
   } else {
@@ -170,20 +168,22 @@ function checkAuctionStatus() {
   return artistItems.find((item) => item.isAuctioning);
 }
 
-// Ff there is an item on auction the localstorage timer starts running
+// If there is an item on auction the localstorage timer starts running
 window.onload = () => {
   const item = checkAuctionStatus();
   if (item) {
     countdownInterval = startCountdown();
+  } else {
+    localStorage.removeItem("bids");
   }
+  populatePreviousAuction();
 };
 
+//__________________________________________________________
 /* TIMER COUNTDOWN */
-//_________________________
 function startCountdown() {
   const timerElement = document.querySelector(".time");
-  let secondsRemaining = localStorage.getItem("countdownRemaining") || 5; //!testing 10s
-  //! Default 120s //testing 10s
+  let secondsRemaining = localStorage.getItem("countdownRemaining") || 120;
 
   const interval = setInterval(() => {
     const minutes = Math.floor(secondsRemaining / 60);
@@ -196,18 +196,17 @@ function startCountdown() {
 
     if (secondsRemaining <= 0) {
       clearInterval(interval);
+      localStorage.removeItem("bids");
       const item = checkAuctionStatus();
       if (item) {
         // Update the item properties
         item.isAuctioning = false;
-        if (bidCheck > -1) {
-          //set to -1 for testing, default 0,
-          // if there are more bidders than 1 dateSold and priceSold are updated
+        if (bidCheck > 0) {
           item.dateSold = new Date().toISOString();
           item.priceSold = +currentBid.textContent;
+          populatePreviousAuction();
         }
         saveToLocalStorage();
-
         clearAuctionItemFromLocalStorage();
         removeAuction();
         clearInterval(countdownInterval);
@@ -222,6 +221,13 @@ function startCountdown() {
 
   return interval;
 }
+function extendBiddingTimer() {
+  const secondsRemaining =
+    parseInt(localStorage.getItem("countdownRemaining")) || 120;
+  const extendedTime = Math.min(secondsRemaining + 60, 180); // Extend by 1 minute, but not more than 3 minutes
+
+  localStorage.setItem("countdownRemaining", extendedTime);
+}
 
 function populateAuction() {
   let auctionItem = loadAuctionItemFromLocalStorage();
@@ -233,7 +239,7 @@ function populateAuction() {
   currentBid.textContent = `${auctionItem.price / 2}`;
   bidCheck = auctionItem.price;
   totalBids.textContent = "0";
-  minimumBid.textContent = `${+currentBid.textContent + 50}`;
+  minimumBid.textContent = `${+currentBid.textContent + MINIMUM_UPBID}`;
 
   // Show the auction page and hide the "no auction" page
   auctionPage.style.display = "block";
@@ -245,3 +251,117 @@ function removeAuction() {
 }
 //_________________________________________________
 /* BIDDING FUNCTIONALITY */
+//TODO: back-end communication with the API
+
+const BID_API = "https://projects.brainster.tech/bidding/api" //!not included
+
+const currentBidsContainer = document.querySelector(".current-bids");
+
+// Update current bid and minimum bid based on saved bids
+function updateCurrentAndMinimumBid() {
+  const storedBids = JSON.parse(localStorage.getItem("bids")) || [];
+
+  if (storedBids.length > 0) {
+    const latestBid = storedBids[storedBids.length - 1].bidAmount;
+    currentBid.textContent = latestBid;
+    minimumBid.textContent = latestBid + MINIMUM_UPBID;
+  }
+
+  totalBids.textContent = storedBids.length;
+}
+
+// Populate saved bids from local storage
+function populateSavedBids() {
+  const storedBids = JSON.parse(localStorage.getItem("bids")) || [];
+
+  storedBids.forEach((bidInfo) => {
+    const bidItem = document.createElement("div");
+    bidItem.classList.add("bid-item");
+
+    const bidItemContent = `
+      <div class="current-bid-details">
+        <div><i class="fas fa-gavel"></i></div>
+        <div class="bid-item-info">
+        <h4>Bidder</h4>
+        <span class="bid-time">${bidInfo.bidTime}</span>
+        </div>
+        </div>
+        <div class="bid-amount-price">
+        <span>$${bidInfo.bidAmount}</span>
+        </div>
+        `;
+
+    bidItem.innerHTML = bidItemContent;
+    currentBidsContainer.appendChild(bidItem);
+  });
+}
+
+// On page load update mininum bid and populate saved bids
+window.addEventListener("DOMContentLoaded", () => {
+  updateCurrentAndMinimumBid();
+  populateSavedBids();
+});
+
+bidButton.addEventListener("click", () => {
+  location.reload();
+  const minimumBidValue = +document.querySelector("#bid-price-input").value;
+  if (minimumBidValue < +minimumBid.textContent) {
+    return alert(
+      `The minimum bid for this auction is $${minimumBid.textContent}`
+    );
+  }
+
+  liveAuctionItem.price = +currentBid.textContent;
+  console.log(currentBid.textContent);
+
+  // Increase the bidding count by one on each bid
+  const currentTotalBids = +totalBids.textContent;
+  totalBids.textContent = currentTotalBids + 1;
+
+  // Update the minimum bid
+  minimumBid.textContent = minimumBidValue + MINIMUM_UPBID;
+
+  const currentBidValue = +currentBid.textContent;
+  const newCurrentBidValue = Math.max(currentBidValue, minimumBidValue);
+  currentBid.textContent = newCurrentBidValue;
+  const bidTime = new Date().toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  });
+
+  updateCurrentAndMinimumBid();
+
+  // Save to local storage
+  const bidInfo = {
+    bidTime: bidTime,
+    bidAmount: minimumBidValue,
+  };
+  const storedBids = JSON.parse(localStorage.getItem("bids")) || [];
+  storedBids.push(bidInfo);
+  localStorage.setItem("bids", JSON.stringify(storedBids));
+
+  // Create and append bid item to the current bids container
+  const bidItem = document.createElement("div");
+  bidItem.classList.add("bid-item");
+
+  const bidItemContent = `
+    <div class="current-bid-details">
+      <div><i class="fas fa-gavel"></i></div>
+      <div class="bid-item-info">
+        <h4>Bidder</h4>
+        <span class="bid-time">${bidTime}</span>
+      </div>
+    </div>
+    <div class="bid-amount-price">
+      <span>$${minimumBidValue}</span>
+    </div>
+  `;
+
+  bidItem.innerHTML = bidItemContent;
+  currentBidsContainer.appendChild(bidItem);
+
+  // Clear the bid input after submitting
+  document.querySelector("#bid-price-input").value = "";
+  extendBiddingTimer();
+});

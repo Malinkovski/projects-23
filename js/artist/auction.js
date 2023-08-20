@@ -224,7 +224,7 @@ function startCountdown() {
 function extendBiddingTimer() {
   const secondsRemaining =
     parseInt(localStorage.getItem("countdownRemaining")) || 120;
-  const extendedTime = Math.min(secondsRemaining + 60, 180); // Extend by 1 minute, but not more than 3 minutes
+  const extendedTime = secondsRemaining + 60; // Extend by 1 minute
 
   localStorage.setItem("countdownRemaining", extendedTime);
 }

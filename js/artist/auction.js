@@ -132,6 +132,7 @@ function populateAuctionPageFromLocalStorage() {
 let countdownInterval;
 
 function toggleAuctionStatus(itemId) {
+  location.reload();
   let isItemOnAuction = false;
   const item = artistItems.find((item) => item.id === itemId);
 
@@ -266,6 +267,9 @@ function updateCurrentAndMinimumBid() {
     currentBid.textContent = latestBid;
     minimumBid.textContent = latestBid + MINIMUM_UPBID;
   }
+
+  const liveAuction = document.querySelector(".live-auction");
+  liveAuction.textContent = "$" + currentBid.textContent;
 
   totalBids.textContent = storedBids.length;
 }

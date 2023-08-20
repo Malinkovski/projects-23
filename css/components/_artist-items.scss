@@ -198,6 +198,9 @@
   #capturedImage{
     object-fit: unset;
   }
+  #imageInput {
+    display: none;
+  }
   
   /* STYLE FOR CHECKBOX === */
   input[type="checkbox"] {

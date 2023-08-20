@@ -4,6 +4,7 @@ const totalIncome = document.querySelector(".total-income");
 const liveAuctionWidget = document.querySelector(
   ".earnings-content.bg-contrast"
 );
+
 document.addEventListener("DOMContentLoaded", () => {
   loadFromLocalStorage();
   populateEarningsData();
@@ -143,7 +144,7 @@ function renderChart() {
     }
   } else {
     for (let dayOffset = dateRange - 1; dayOffset >= 0; dayOffset--) {
-      const currentDate = new Date(2023, 7, 20); //!TESTING DATE ONLY// // new Date();
+      const currentDate = new Date(); //!TESTING DATE ONLY// // new Date();
       currentDate.setDate(currentDate.getDate() - dayOffset); // ajdusting the date to current day with offset
       dateLabels.push(currentDate.toISOString().slice(0, 10)); // format to yyyy-mm-dd
     }

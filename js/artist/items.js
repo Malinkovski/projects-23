@@ -210,6 +210,8 @@ function publishUnpublishBtn() {
     });
 }
 
+//_____________________________________________________________
+// toggle the publish status for an item
 function togglePublishStatus(itemId) {
   const item = artistItems.find((item) => item.id === itemId);
   item.isPublished = !item.isPublished; // Change publish status
@@ -217,57 +219,6 @@ function togglePublishStatus(itemId) {
   renderItems(); // Update the items list with the latest status
 }
 
-//!________________________________________
-// toggle the publish status for an item
-function toggleAuctionStatus(itemId) {
-  let isItemOnAuction = false;
-  const item = artistItems.find((item) => item.id === itemId);
-
-  // checking if other item from the artists item list has already an auction status on
-  artistItems.forEach((otherItem) => {
-    if (otherItem.isAuctioning && otherItem.id !== itemId) {
-      isItemOnAuction = true;
-    }
-  });
-
-  if (isItemOnAuction && !item.isAuctioning) {
-    // if there is already an item on auction
-    alert("There is already an item on auction.");
-    return;
-  }
-
-  item.isAuctioning = !item.isAuctioning; // change status
-  saveToLocalStorage();
-
-  if (item.isAuctioning) {
-    // If the item is sent to auction, populate the auction page
-    const auctionImage = document.querySelector(".auction-image img");
-    const auctionArtistName = document.querySelector(".auction-artist-name");
-    const auctionTitleName = document.querySelector(".auction-title-name");
-    const auctionDescription = document.querySelector(".auction-description");
-    const currentBid = document.querySelector(".current-bid .bid-amount");
-    const totalBids = document.querySelector(".total-bids .total-amount-of-bids");
-    const minimumBid = document.querySelector(".place-amount .minimum-sum");
-
-    auctionImage.src = item.image;
-    auctionArtistName.textContent = item.artist;
-    auctionTitleName.textContent = item.title;
-    auctionDescription.textContent = item.description;
-    currentBid.textContent = `$${item.price / 2}`;
-    totalBids.textContent = "0"; // You might need to update this with actual bid count
-    minimumBid.textContent = `$${item.price / 2}`; // You can set this to the minimum bid value
-
-    // Show the auction page and hide the "no auction" page
-    auctionPage.style.display = "block";
-    noAuctionPage.style.display = "none";
-  } else {
-    // If the item is removed from auction, hide the auction page and show the "no auction" page
-    auctionPage.style.display = "none";
-    noAuctionPage.style.display = "block";
-  }
-
-  renderItems(); // Update the items list with the latest status
-}
 
 //_____________________________________________________________
 /* SNAPSHOT METHOD */

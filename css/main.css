@@ -1266,6 +1266,10 @@ textarea:hover {
   object-fit: unset;
 }
 
+#imageInput {
+  display: none;
+}
+
 /* STYLE FOR CHECKBOX === */
 input[type=checkbox] {
   display: none;
@@ -1441,6 +1445,7 @@ input[type=checkbox]:checked + .checkmark:after {
 
 #auction-page {
   display: none;
+  padding-bottom: 60px;
 }
 
 #previous-auction-page {

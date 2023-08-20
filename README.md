@@ -34,7 +34,7 @@ Use the built-in continuous integration in GitLab.
 
 ## Description
 
-This is the second project called "Brainster Labs | ARTists," named "project02." It's built using HTML5, SASS, and JavaScript. The website is designed for mobile devices and employs APIs to fill in artist names. The detailed information for their items is provided through a data.js file. The website heavily relies on LocalStorage for its functionality, though there's an issue with high-resolution images from the camera on mobile devices due to the local storage limitations.
+This is the second project called "Street Artist," named "project02." It's built using HTML5, SASS, and JavaScript. The website is designed for mobile devices and employs APIs to fill in artist names. The detailed information for their items is provided through a data.js file. The website heavily relies on LocalStorage for its functionality, though there's an issue with high-resolution images from the camera on mobile devices due to the local storage limitations.
 
 Best way to be tested is by adding low resolution images to the items through Laptop.
 

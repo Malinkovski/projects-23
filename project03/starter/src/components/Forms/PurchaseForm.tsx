@@ -75,7 +75,6 @@ const PurchaseForm = ({
         initialValues={initialValues}
         validationSchema={valSchemaPurchases}
         onSubmit={(values, { resetForm }) => {
-          console.log("a");
           handleShowSuccessModal();
           clearCart();
           resetForm();

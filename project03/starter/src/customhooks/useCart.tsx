@@ -19,7 +19,6 @@ const useCart = (productId: string) => {
   const handleAddToCart = () => {
     const cartItems = localStorage.getItem("cart");
     let cartIds = cartItems ? JSON.parse(cartItems) : [];
-    console.log(cartIds);
     if (
       cartIds.some(
         (item: { productId: string }) => item.productId === productId
@@ -30,7 +29,7 @@ const useCart = (productId: string) => {
       cartIds.push({ productId, productQuantity });
       setIsInCart(false);
     }
-    console.log("test");
+
     setCart(cartIds);
     localStorage.setItem("cart", JSON.stringify(cartIds));
   };

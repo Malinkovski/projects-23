@@ -58,8 +58,6 @@ export async function getStaticProps() {
   const res = await fetch(LOCAL_BRANDS_API);
   const data = await res.json();
 
-  console.log(data);
-
   return {
     props: {
       brands: data,

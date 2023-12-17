@@ -1,0 +1,23 @@
+# Running the app:
+
+1. Run `npm install`
+2. Run `npm run dev`
+
+# Running the database server:
+
+1. Run `npm run server`
+
+# Resources:
+      -  http://localhost:5001/banner_content
+      -  http://localhost:5001/about_page
+      -  http://localhost:5001/products
+      -  http://localhost:5001/blogs
+
+# Home:
+      -  http://localhost:5001
+
+
+# Running the scss:
+
+1. Run `npm run watch:scss`
+    

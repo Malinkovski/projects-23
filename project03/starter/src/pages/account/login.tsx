@@ -9,8 +9,8 @@ import ButtonSubmitAccount from "../../components/Buttons/Account/ButtonSubmitAc
 import ButtonAltRegister from "../../components/Buttons/Account/ButtonAltRegister";
 import Link from "next/link";
 import PasswordField from "../../components/Forms/PasswordField";
-import GoogleSvg from "public/images/Icons/google.svg";
-import FacebookSvg from "public/images/Icons/facebook.svg";
+import GoogleSvg from "/public/images/Icons/google.svg";
+import FacebookSvg from "/public/images/Icons/facebook.svg";
 import CheckboxField from "../../components/Forms/CheckboxField";
 import { useRouter } from "next/router";
 import PassResetReqModal from "../../components/Modals/Account/PassResetReqModal";

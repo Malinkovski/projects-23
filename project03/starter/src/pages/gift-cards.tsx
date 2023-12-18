@@ -6,7 +6,7 @@ import ButtonGiftCard from "../components/Buttons/ButtonGiftCard";
 import { GiftCardPageProps } from "../properties/cards";
 import { GIFTCARD_API } from "../properties/variables";
 import fetchData from "../utilities/fetch-data";
-import EightStarSvg from "public/images/icons/emojione-monotone_eight-pointed-star.svg";
+import EightStarSvg from "/public/images/icons/emojione-monotone_eight-pointed-star.svg";
 import { useEffect, useState } from "react";
 
 const GiftCardPage: NextPage<GiftCardPageProps> = (data) => {

@@ -1,15 +1,10 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
-import {
-  FooterValidationSchema,
-  validEmail,
-} from "../../../utilities/validation-schema";
+import { FooterValidationSchema } from "../../../utilities/validation-schema";
 import { useState } from "react";
-import { Placeholder } from "react-bootstrap";
 
-interface FormValues {
+/* interface FormValues {
   email: string;
-}
+} */
 
 const FooterForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -17,7 +12,6 @@ const FooterForm = () => {
     <Formik
       initialValues={{ email: "" }}
       onSubmit={(values, { resetForm }) => {
-        console.log(values); //!TEMP
         resetForm();
         setIsSubmitted(true);
         setTimeout(() => {

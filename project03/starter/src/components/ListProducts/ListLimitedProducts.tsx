@@ -5,6 +5,7 @@ import ProductsMap from "./ProductsMap";
 import { MinimalProductProps } from "../../properties/products";
 import { SearchProductsProps } from "../../properties/pageprops";
 import { shuffleItems } from "../../utilities/shuffle-items";
+import { ReactPaginateProps } from "react-paginate";
 
 const SearchProducts = ({
   title,
@@ -69,7 +70,7 @@ const SearchProducts = ({
     }
   };
 
-  const handlePageChange = (data: any) => {
+  const handlePageChange = (data: { selected: number } & ReactPaginateProps) => {
     setCurrentPage(data.selected + 1);
   };
 

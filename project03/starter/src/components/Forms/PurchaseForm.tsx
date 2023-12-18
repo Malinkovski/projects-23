@@ -39,7 +39,7 @@ const PurchaseForm = ({
       }
       const userData = localStorage.getItem("users");
       if (userData) {
-        let users = JSON.parse(userData);
+        const users = JSON.parse(userData);
         const user = users.find((user: UserProps) => user.id === userId);
         if (user && fillForm) {
           initialValues.name = user.name;

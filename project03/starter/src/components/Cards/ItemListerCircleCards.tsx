@@ -1,21 +1,25 @@
 import React from "react";
 import CardWithCircleBadge from "./CardWithCircleBadge";
 
-interface ItemListerWithcircleCardsProps<T> {
-  items: Array<T>;
+// Define the type for your items
+interface ItemType {
+  id: number;
+  image: string;
+  title: string;
+  text: string;
+  // ... other properties
+}
+
+interface ItemListerWithcircleCardsProps {
+  items: ItemType[];
   main_href: string;
   starting_item_number?: number;
 }
 
-//!COMPONENT NOT USED //WIP
-//! used for home, brands
-
-const ItemListerWithcircleCards: React.FC<
-  ItemListerWithcircleCardsProps<any>
-> = ({ items, main_href, starting_item_number: n }) => {
+const ItemListerWithcircleCards: React.FC<ItemListerWithcircleCardsProps> = ({ items, main_href, starting_item_number: n }) => {
   return (
     <>
-      {items.slice(n ? n : 0).map((item, index) => (
+      {items.slice(n ?? 0).map((item, index) => (
         <div
           key={index}
           className={`img-container ${

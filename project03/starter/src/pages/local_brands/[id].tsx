@@ -1,7 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import PageTitle from "../../components/PageCommon/PageTitle";
-import ListProducts from "../../components/temp/ListProducts";
 import Breadcrumbs from "../../components/Breadcrumbs/BreadCrumbs";
 import { BrandProps } from "../../properties/misc";
 import ListLimitedProducts from "../../components/ListProducts/ListLimitedProducts";

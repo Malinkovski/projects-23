@@ -1,7 +1,6 @@
 import Link from "next/link";
 import React from "react";
 import { useNavigationContext } from "../../context/NavigationContext";
-import SparksSvg from "/public/images/icons/sparks.svg";
 
 interface OptionProps {
   link: string;

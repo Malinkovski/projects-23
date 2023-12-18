@@ -7,7 +7,6 @@ import TextareaField from "../../Forms/TextareaField";
 import ButtonSubmitAccount from "../../Buttons/Account/ButtonSubmitAccount";
 import Link from "next/link";
 import ProfilePictureField from "../../Forms/ProfilePicForm";
-import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import { getUserSessionId } from "../../../utilities/account/get-user-id-session";
 
@@ -36,12 +35,12 @@ const RegisterStepTree = () => {
           if (values.profilePicture === "") {
             values.profilePicture = "/images/pfph.jpg";
           }
-          let userId = getUserSessionId()
+          const userId = getUserSessionId()
 
           if (userId !== "") {
             const usersData = localStorage.getItem("users");
             if (usersData) {
-              let users = JSON.parse(usersData);
+              const users = JSON.parse(usersData);
               const updatedUsers = users.map((user: UserProps) => {
                 if (user.id === userId) {
                   return {
@@ -61,7 +60,7 @@ const RegisterStepTree = () => {
           }
         }}
       >
-        {(formik) => (
+        {() => (
           <Form>
             <div>
               <ProfilePictureField id="profilePicture" name="profilePicture" />

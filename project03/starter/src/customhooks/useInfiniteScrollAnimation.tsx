@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { Container } from "react-bootstrap";
 import { addInfiniteScrollAnimation } from "../utilities/ribbon-animation";
 
 const useInfiniteScrollAnimation = (

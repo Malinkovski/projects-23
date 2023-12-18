@@ -16,7 +16,7 @@ export const addInfiniteScrollAnimation = (
       const childWidth = itemInner.offsetWidth;
 
       if (childWidth > 0) {
-        let numberOfDuplicates = Math.ceil(screenResolution / childWidth);
+        const numberOfDuplicates = Math.ceil(screenResolution / childWidth);
 
         itemInner.innerHTML = "";
 

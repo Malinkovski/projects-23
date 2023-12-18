@@ -1,5 +1,5 @@
 import React from "react";
-import { FilterPriceProps, OptionFilterProps } from "../../properties/filters";
+import { FilterPriceProps } from "../../properties/filters";
 
 const FilterPrice = ({
   title,

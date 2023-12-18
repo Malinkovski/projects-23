@@ -1,6 +1,3 @@
-import Option from "./Option";
-import AccountOptions from "./AccountOptions";
-import Dropdown from "./Dropdown";
 import { useNavigationContext } from "../../context/NavigationContext";
 import { useEffect, useState } from "react";
 import useFreezePageOnPopup from "../../customhooks/useFreezePageOnPopup";

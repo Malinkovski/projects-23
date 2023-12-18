@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import PasswordField from "../../Forms/PasswordField";
 import ButtonSubmitAccount from "../../Buttons/Account/ButtonSubmitAccount";
 import { valSchemaPasswordChange } from "../../../utilities/validation-schema";
-import SuccessfulModal from "../SuccessfulModal";
 import { UserProps } from "../../../properties/account";
 import { getUserSessionId } from "../../../utilities/account/get-user-id-session";
 import WrongInput from "../../Account/Misc/WrongInput";
@@ -46,12 +45,12 @@ const handleChangePasswordModal = ({
           validationSchema={valSchemaPasswordChange}
           onSubmit={(values, { resetForm }) => {
             if (values.oldPassword === oldPassword) {
-                let userId = getUserSessionId()
+                const userId = getUserSessionId()
 
                 if (userId !== "") {
                   const usersData = localStorage.getItem("users");
                   if (usersData) {
-                    let users = JSON.parse(usersData);
+                    const users = JSON.parse(usersData);
       
                     const updatedUsers = users.map((user: UserProps) => {
                       if (user.id === userId) {

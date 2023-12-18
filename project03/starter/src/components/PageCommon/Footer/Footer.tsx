@@ -1,6 +1,4 @@
-import Link from "next/link";
 import React from "react";
-import FooterForm from "./FooterForm";
 import UpperFooter from "./UpperFooter";
 import BottomFooter from "./BottomFooter";
 import CopyRight from "./Copyright";

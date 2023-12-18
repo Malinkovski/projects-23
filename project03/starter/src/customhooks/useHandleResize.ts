@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export const handleResize = (event: any) => {
+export const handleResize = (event: Event) => {
   event.preventDefault();
 
   useEffect(() => {

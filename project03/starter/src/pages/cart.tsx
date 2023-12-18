@@ -49,7 +49,7 @@ const CartPage: NextPage = () => {
       }
 
       const queryParams = cart
-        .map((item: any) => `id=${item.productId}`)
+        .map((item) => `id=${item.productId}`)
         .join("&");
       const res = await fetch(`${PRODUCTS_API}?${queryParams}`);
       const data = await res.json();

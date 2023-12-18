@@ -1,6 +1,6 @@
 
 import Cookies from "js-cookie";
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 
 const useAccountButton = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);

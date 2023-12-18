@@ -1,5 +1,5 @@
 import React from "react";
-import ReactPaginate from "react-paginate";
+import ReactPaginate, { ReactPaginateProps } from "react-paginate";
 import ArrowForwardSvg from "/public/images/icons/carousel/arrow-forward.svg";
 import ArrowBackSvg from "/public/images/icons/carousel/arrow-back.svg";
 
@@ -8,7 +8,7 @@ import ArrowBackSvg from "/public/images/icons/carousel/arrow-back.svg";
 
 interface PaginationProps {
   pageCount: number;
-  onPageChange: (data: any) => void;
+  onPageChange: (data: { selected: number } & ReactPaginateProps) => void;
   GoToPage?: number;
 }
 

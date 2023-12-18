@@ -1,4 +1,3 @@
-import Cookies from "js-cookie";
 import React, { createContext, ReactNode, useContext, useEffect, useState } from "react";
 
 interface ContextProps {

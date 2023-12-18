@@ -9,7 +9,6 @@ interface DesktopNavigationProps {
 }
 
 const DesktopNavigation = ({
-    style,
     closeNavbar,
 }:DesktopNavigationProps) => {
   return (

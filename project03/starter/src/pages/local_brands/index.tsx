@@ -1,9 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { BrandProps } from "../../properties/pageprops";
-import PageTitle from "../../components/PageCommon/PageTitle";
 import Breadcrumbs from "../../components/Breadcrumbs/BreadCrumbs";
-import Link from "next/link";
 import CardWithCircleBadge from "../../components/Cards/CardWithCircleBadge";
 import { LOCAL_BRANDS_API } from "../../properties/variables";
 

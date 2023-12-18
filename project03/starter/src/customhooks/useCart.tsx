@@ -18,7 +18,7 @@ const useCart = (productId: string) => {
 
   const handleAddToCart = () => {
     const cartItems = localStorage.getItem("cart");
-    let cartIds = cartItems ? JSON.parse(cartItems) : [];
+    const cartIds = cartItems ? JSON.parse(cartItems) : [];
     if (
       cartIds.some(
         (item: { productId: string }) => item.productId === productId

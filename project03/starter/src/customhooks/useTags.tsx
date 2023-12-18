@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { DetailedProductProps, MinimalProductProps, ProductTags } from "../properties/products";
+import { useState } from "react";
+import { DetailedProductProps, ProductTags } from "../properties/products";
 
 const useTags = (initialTags: string[] = []) => {
   const [uniqueTags, setUniqueTags] = useState<string[]>(initialTags);

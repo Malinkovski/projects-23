@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import ModalTitle from "../ModalTitle";
-import FormField from "../../Forms/FormField";
 
 interface PassResetReqModalProps {
   handleCloseModal: () => void;

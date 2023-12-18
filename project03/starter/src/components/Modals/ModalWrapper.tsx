@@ -1,5 +1,4 @@
 import React from "react";
-import { Modal } from "react-bootstrap";
 import ModalTitle from "./ModalTitle";
 import CloseSvg from "/public/images/icons/close-x.svg";
 

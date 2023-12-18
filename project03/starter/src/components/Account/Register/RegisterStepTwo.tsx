@@ -6,22 +6,10 @@ import ButtonSubmitAccount from "../../Buttons/Account/ButtonSubmitAccount";
 import CheckboxField from "../../Forms/CheckboxField";
 import PrivacyPolicy from "../Misc/PrivacyPolicy";
 import PasswordField from "../../Forms/PasswordField";
-import { UserProps } from "../../../properties/account";
-import { registerUser } from "../../../utilities/account/register-user";
+import { RegisterProps, UserProps } from "../../../properties/account";
+//import { registerUser } from "../../../utilities/account/register-user";
 import WrongInput from "../Misc/WrongInput";
-
-interface RegisterProps {
-  name: string;
-  surname: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-  id: string;
-  biography: string;
-  livingAdress: string;
-  phoneNumber: string;
-  profilePicture: string;
-}
+import { generateRandomId } from "../../../utilities/account/generateRandomId";
 
 interface RegisterStepTwoProps {
   handleSuccessfullRegister: () => void;
@@ -35,9 +23,11 @@ const initialValues: RegisterProps = {
   confirmPassword: "",
   id: "",
   biography: "",
-  livingAdress: "",
+  livingAddress: "",
   phoneNumber: "",
   profilePicture: "",
+  rememberPassword: false,
+  news: false,
 };
 
 const RegisterStepTwo = ({
@@ -52,7 +42,7 @@ const RegisterStepTwo = ({
     }, 5000);
   };
 
-  const handleSubmitting = (values: UserProps) => {
+  const handleSubmitting = (values: RegisterProps) => {
     sessionStorage.setItem("user", JSON.stringify(values.id));
     handleSuccessfullRegister();
   };
@@ -63,7 +53,27 @@ const RegisterStepTwo = ({
         initialValues={initialValues}
         validationSchema={valSchemaRegister}
         onSubmit={(values, { resetForm }) => {
-          registerUser({ values, resetForm, handleExistingEmail, handleSubmitting });
+          values.id = generateRandomId();
+          const existingUsers = localStorage.getItem("users");
+          let usersParsed = [];
+        
+          if (existingUsers) {
+            usersParsed = JSON.parse(existingUsers);
+            const emailExists = usersParsed.some((user:UserProps) => user.token === values.id);
+        
+            if (emailExists) {
+              handleExistingEmail();
+            } else {
+              usersParsed.push(values);
+              localStorage.setItem("users", JSON.stringify(usersParsed));
+              handleSubmitting(values);
+              resetForm();
+            }
+          } else {
+            localStorage.setItem("users", JSON.stringify([values]));
+            handleSubmitting(values);
+            resetForm();
+          }
         }}
       >
         {(formik) => (

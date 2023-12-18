@@ -7,7 +7,6 @@ import { valSchemaLogin } from "../../utilities/validation-schema";
 import FormField from "../../components/Forms/FormField";
 import ButtonSubmitAccount from "../../components/Buttons/Account/ButtonSubmitAccount";
 import ButtonAltRegister from "../../components/Buttons/Account/ButtonAltRegister";
-import Link from "next/link";
 import PasswordField from "../../components/Forms/PasswordField";
 import GoogleSvg from "/public/images/Icons/google.svg";
 import FacebookSvg from "/public/images/Icons/facebook.svg";
@@ -17,10 +16,10 @@ import PassResetReqModal from "../../components/Modals/Account/PassResetReqModal
 import ButtonSmallAccount from "../../components/Buttons/Account/ButtonSmallAccount";
 import ButtonPasswordReset from "../../components/Buttons/Account/ButtonPasswordReset";
 import Separator from "../../components/Account/Misc/Separator";
-import { validateLogin } from "../../utilities/account/validate-login";
 import useRedirect from "../../customhooks/accounthooks/useRedirect";
-import { UserProps } from "../../properties/account";
 import WrongInput from "../../components/Account/Misc/WrongInput";
+import { UserProps } from "../../properties/account";
+import Cookies from "js-cookie";
 
 interface LoginProps {
   email: string;
@@ -43,6 +42,13 @@ const RegisterPage: NextPage = () => {
   const showPasswordResetModal = () => setForgotPassword(true);
   const hidePasswordResetModal = () => setForgotPassword(false);
 
+  const invalidLogin = () => {
+    setShowErrorLogin(true);
+    setTimeout(() => {
+      setShowErrorLogin(false);
+    }, 5000);
+  };
+
   useRedirect();
   return (
     <>
@@ -57,8 +63,30 @@ const RegisterPage: NextPage = () => {
           <Formik
             initialValues={initialValues}
             validationSchema={valSchemaLogin}
-            onSubmit={(values: any, { resetForm }) => {
-              validateLogin({ router, values, setShowErrorLogin, resetForm });
+            onSubmit={(values, { resetForm }) => {
+              const usersStatus = localStorage.getItem("users");
+              if (usersStatus) {
+                const users = JSON.parse(usersStatus);
+                const user = users.find(
+                  (user: UserProps) =>
+                    user.email === values.email &&
+                    user.password === values.password
+                );
+                if (user) {
+                  if (values.rememberPassword) {
+                    Cookies.set("loggedInUser", JSON.stringify(user.id), {
+                      expires: 90,
+                    });
+                  }
+                  sessionStorage.setItem("user", JSON.stringify(user.id));
+                  resetForm();
+                  router.push("/account/profile");
+                } else {
+                  invalidLogin();
+                }
+              } else {
+                invalidLogin();
+              }
             }}
           >
             {(formik) => (

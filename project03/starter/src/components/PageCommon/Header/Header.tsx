@@ -12,7 +12,6 @@ const Header = () => {
     setCloseNavbar,
     closeNavbar,
     setCloseSearchbar,
-    closeSearchbar,
     isFilterNavActive,
     setIsFilterNavActive,
     showPurchaseModal,
@@ -42,7 +41,7 @@ const Header = () => {
           /> 
           <div className="burger-ph"></div>
           <Link className="main-logo" href="/">
-            <img src="/images/logo-igralishte.png" alt="logo igralishte" />
+            <img src="/images/logo-Igralishte.png" alt="logo" />
           </Link>
           <div
             onClick={() => {

@@ -5,8 +5,6 @@ import Breadcrumbs from "../../components/Breadcrumbs/BreadCrumbs";
 import ProductsMap from "../../components/ListProducts/ProductsMap";
 import Pagination from "../../components/ListProducts/Pagination";
 import { GetServerSidePropsContext, NextPage } from "next";
-import OutOfStock from "../../components/PageErrors/OutOfStock";
-import useFreezePageOnPopup from "../../customhooks/useFreezePageOnPopup";
 import { ProductsPageProps } from "../../properties/pageprops";
 import { FilterProps } from "../../properties/filters";
 import useProductFilters from "../../customhooks/useFilters";
@@ -215,7 +213,7 @@ export const getServerSideProps = async ({
     apiUrl.searchParams.set("_limit", _limit as string);
 
     const appendFilterToQuery = (
-      url: any,
+      url: URL,
       key: string,
       filter: string | string[] | undefined
     ) => {

@@ -1,4 +1,3 @@
-import { ErrorMessage, Field, useField } from "formik";
 import React, { useState } from "react";
 
 interface CheckboxFieldProps {
@@ -9,7 +8,7 @@ interface CheckboxFieldProps {
   handleFillForm?: () => void;
 }
 
-const CheckboxField = ({ id, name, label, onClick, handleFillForm }: CheckboxFieldProps) => {
+const CheckboxField = ({ id, label, onClick, handleFillForm }: CheckboxFieldProps) => {
   const [clicked, setClicked] = useState(false);
 
   const handleClick = () => {

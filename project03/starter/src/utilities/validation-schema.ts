@@ -6,7 +6,7 @@ export const validPassword =
 
 //min 8 characters, 1 upper case, 1 lower case, 1 digit, 1 special char "!@#$%^&*()_+".
 
-const isValidPhoneNumber = (value: any) => {
+const isValidPhoneNumber = (value: string) => {
   if (!value) {
     return false;
   }

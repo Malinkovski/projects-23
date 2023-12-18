@@ -9,12 +9,12 @@ interface ButtonGiftCardProps {
 
 const ButtonGiftCard = ({ price }: ButtonGiftCardProps) => {
   const [isClicked, setIsClicked] = useState(false);
-  const {giftcards, setGiftcards} = useCartFavoritesContext();
+  const { setGiftcards} = useCartFavoritesContext();
 
   const handleButtonClick = () => {
     setIsClicked(!isClicked);
     const giftCards = localStorage.getItem("giftcards");
-    let GiftCardsArray = giftCards ? JSON.parse(giftCards) : [];
+    const GiftCardsArray = giftCards ? JSON.parse(giftCards) : [];
     GiftCardsArray.push(price);
     localStorage.setItem("giftcards", JSON.stringify(GiftCardsArray));
     setGiftcards(GiftCardsArray);

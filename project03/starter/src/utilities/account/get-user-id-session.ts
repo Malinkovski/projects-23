@@ -1,5 +1,4 @@
 import Cookies from "js-cookie";
-import React from "react";
 
 export const getUserSessionId = () => {
     let userId = "";

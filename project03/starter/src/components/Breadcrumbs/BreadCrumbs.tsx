@@ -54,7 +54,6 @@ const Breadcrumbs = ({ excludeLast }: BreadcrumbsProps) => {
     fetchDataAndUpdateState();
   }, [customStaticCrumbNames]);
 
-  //console.log(crumbNames);
 
   const urlParts = router.asPath
     .split("?")[0]

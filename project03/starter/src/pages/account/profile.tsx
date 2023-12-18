@@ -51,10 +51,10 @@ const ProfilePage: NextPage = () => {
   const [currentEmail, setCurrentEmail] = useState("");
 
   useEffect(() => {
-    let userId = getUserSessionId();
+    const userId = getUserSessionId();
     const userData = localStorage.getItem("users");
     if (userData) {
-      let users = JSON.parse(userData);
+      const users = JSON.parse(userData);
       const user = users.find((user: UserProps) => user.id === userId);
       if (user) {
         initialValues.profilePicture = user.profilePicture;
@@ -128,12 +128,12 @@ const ProfilePage: NextPage = () => {
                 if (values.profilePicture === "") {
                   values.profilePicture = "/images/pfph.jpg";
                 }
-                let userId = getUserSessionId()
+                const userId = getUserSessionId()
 
                 if (userId !== "") {
                   const usersData = localStorage.getItem("users");
                   if (usersData) {
-                    let users = JSON.parse(usersData);
+                    const users = JSON.parse(usersData);
       
                     const updatedUsers = users.map((user: UserProps) => {
                       if (user.id === userId) {

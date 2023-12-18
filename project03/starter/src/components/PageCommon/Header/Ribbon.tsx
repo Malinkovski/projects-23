@@ -1,4 +1,3 @@
-import router from "next/router";
 import React, { useState, useEffect } from "react";
 import useInfiniteScrollAnimation from "../../../customhooks/useInfiniteScrollAnimation";
 import { ADS_API } from "../../../properties/variables";

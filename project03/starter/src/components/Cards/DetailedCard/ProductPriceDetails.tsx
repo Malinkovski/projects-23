@@ -23,7 +23,6 @@ const ProductPriceDetails = ({
   setProductQuantity,
   isFavorite,
   isInCart,
-  setIsInCart,
   handleAddToCart,
   handleAddToFavorites,
 }: ProductPriceDetailsProps) => {

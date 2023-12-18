@@ -3,7 +3,6 @@ import { FormEvent, useEffect, useState } from "react";
 import useFreezePageOnPopup from "../../customhooks/useFreezePageOnPopup";
 import {
   LIMIT_ITEMS_PER_SMALL_PAGINATION,
-  LOCAL_BRANDS_API,
   PRODUCTS_API,
 } from "../../properties/variables";
 import ListLimitedProducts from "../ListProducts/ListLimitedProducts";
@@ -14,7 +13,7 @@ import SearchSvg from "/public/images/icons/fluent_search-48-regular.svg";
 
 const Search = () => {
   const { closeSearchbar, setCloseSearchbar } = useNavigationContext();
-  const [isActive, setIsActive] = useState(false);
+  const [, setIsActive] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const router = useRouter();
 

@@ -34,12 +34,8 @@ Use the built-in continuous integration in GitLab.
 
 ## Description
 
-This is a branch ffrom the Brainster projects repository, the first project "project01" named  "Brainster Labs | Front End Academy" or Brif project, and it's written in Sass and javascript.
+This is a branch from the Brainster projects repository, the first project "project01" named  "Brainster Labs | Front End Academy" or Brif project, and it's written in Sass and javascript.
 
 ## Roadmap
 
 Adding future challenge branches from Brainster to my git repository.
-
-## Project status
-
-Not finished.
